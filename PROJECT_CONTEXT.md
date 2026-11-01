@@ -53,6 +53,8 @@ Khung thời gian sử dụng cho dự án: **05/11/2026–17/01/2027**, đượ
 
 Lịch theo tuần, phân công và đầu ra nằm tại [TASKS.md](TASKS.md). Các việc đã thực hiện trước ngày 05/11 là công tác chuẩn bị; giữ nguyên ngày trong log/manifest và trạng thái hoàn thành, không chuyển thành công việc đã thực hiện trong kỳ mới.
 
+Ngày 01/11/2026, người dùng thống nhất quản lý triển khai theo một nhánh Git cho mỗi tuần, kiểm tra và merge về nhánh chính `master` khi bàn giao. Quy tắc thao tác nằm tại [AGENTS.md](AGENTS.md#làm-việc-theo-nhánh-tuần), tên nhánh gắn với lịch nằm tại [TASKS.md](TASKS.md#kế-hoạch-theo-tuần). Việc merge nhánh không đồng nghĩa mọi công việc của tuần đã hoàn thành.
+
 PDF hiện tại đã sử dụng lịch này ở thông tin đầu đề và bảng kế hoạch. Đã lưu [bản trước cập nhật lần đầu](docs/archive/DeCuongDATN_25410304_25410313_truoc_cap_nhat_2026-11-01.pdf) và [bản trước sửa theo review lần 2](docs/archive/DeCuongDATN_25410304_25410313_truoc_review_lan_2_2026-11-01.pdf) để đối chiếu. [Bản Markdown](docs/DeCuongDATN_25410304_25410313.md) dùng để chỉnh nội dung; [nhật ký review](docs/REVIEW_DE_CUONG.md) ghi các mục đã sửa và cách xuất PDF. Các quyết định kỹ thuật còn mở tiếp tục theo dõi tại D01–D04.
 
 ## Ghi nhận về dữ liệu

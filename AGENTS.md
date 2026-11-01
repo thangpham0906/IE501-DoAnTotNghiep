@@ -25,6 +25,19 @@
 9. Khi được yêu cầu sửa đề cương, cập nhật bản Markdown và xuất PDF bằng `scripts/build_proposal.py`; giữ bản trước sửa để đối chiếu, theo hướng dẫn tại `docs/REVIEW_DE_CUONG.md`. Ghi đề xuất thay đổi phạm vi hoặc mô hình vào `PROJECT_CONTEXT.md`; không tự coi đề xuất đã được giảng viên chấp thuận.
 10. Dùng tiếng Việt trong tài liệu và trao đổi mặc định. Khi bàn giao, nêu thay đổi, cách kiểm tra và giới hạn còn lại.
 
+## Làm việc theo nhánh tuần
+
+Nhánh chính của repo là **`master`**. Mỗi tuần công việc có một nhánh tích hợp theo tên trong [kế hoạch tuần](TASKS.md#kế-hoạch-theo-tuần); nhánh chính lưu các thay đổi đã được kiểm tra và review.
+
+1. Trước khi sửa, kiểm tra `git status --short --branch` và các nhánh local/remote; xác định tuần, mã Txx và phụ thuộc của nhiệm vụ được giao. Tiếp tục nhánh phù hợp đã có; không chọn tuần chỉ theo ngày hiện tại hoặc tự mở rộng sang mọi việc trong tuần.
+2. Khi bắt đầu tuần mới, chỉ tạo nhánh tuần đó từ `master` đã cập nhật và chứa kết quả tuần trước đã merge. Không tạo trước cả 11 nhánh. Nếu tuần trước chưa merge, hoàn tất phần tích hợp hoặc ghi rõ phụ thuộc và hướng xử lý trước khi tạo nhánh kế tiếp.
+3. Làm việc triển khai trên nhánh tuần, không sửa trực tiếp trên `master`. Việc chuẩn bị trước tuần 1 hoặc sửa riêng tài liệu/quy trình dùng nhánh `docs/<noi-dung>` từ `master`; không tính thành kết quả đã hoàn thành của tuần 1. Giữ nguyên thay đổi đang có theo quy tắc 1 ở trên.
+4. Hai người có thể dùng chung nhánh tuần, đồng bộ trước khi tích hợp. Nếu cần tách việc để review, tạo nhánh `task/week-XX-Txx-<noi-dung>` từ nhánh tuần rồi merge trở lại nhánh tuần đó. Không force-push hoặc viết lại lịch sử nhánh dùng chung. Khi commit, chia theo đầu việc và nêu mã Txx nếu có.
+5. Trước khi merge về `master`: review toàn bộ diff, chạy kiểm tra phù hợp theo [README](README.md#bắt-đầu), cập nhật tài liệu liên quan và bằng chứng trong `TASKS.md`. Nếu `master` có thay đổi mới, tích hợp vào nhánh tuần, xử lý xung đột và kiểm tra phần bị ảnh hưởng trước khi merge.
+6. Khi kết thúc tuần, merge phần đã ổn định; ưu tiên merge commit (`--no-ff`) để giữ mốc từng tuần. Ghi mã commit merge hoặc liên kết PR tại `TASKS.md`; có thể tạo tag `week-XX-done` tại commit tích hợp. Tag chỉ ghi mốc bàn giao, không thay thế trạng thái nghiệm thu từng việc.
+7. Việc chưa xong giữ đúng trạng thái **Đang làm/Bị chặn**, ghi nguyên nhân, phần còn lại và tuần tiếp tục; không đánh dấu hoàn thành để kịp merge. Phần còn làm được tiếp tục trên nhánh tuần sau, không đưa thay đổi làm hỏng luồng đang hoạt động vào `master`. Dữ liệu/checkpoint vẫn theo mục **Quy tắc làm việc** và `.gitignore`; merge nhánh không tự chuyển các file bị bỏ qua.
+8. Thực hiện commit, push, merge hoặc tạo tag theo phạm vi công việc đã được người dùng giao; việc đọc quy trình này không tự khởi chạy các thao tác đó. Khi bàn giao, nêu nhánh đang làm, mã việc, kiểm tra đã chạy, trạng thái merge và phần cần tiếp tục.
+
 ## Cập nhật đúng nơi
 
 - Bối cảnh, phạm vi, quyết định: `PROJECT_CONTEXT.md`.
