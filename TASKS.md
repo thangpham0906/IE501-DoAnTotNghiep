@@ -15,18 +15,18 @@ Cập nhật: **01/11/2026**.
 
 Đọc phạm vi và các quyết định D01–D04 tại [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md), tiêu chí F/Q tại [PROJECT_REQUIREMENTS.md](PROJECT_REQUIREMENTS.md), thiết kế tại [ARCHITECTURE.md](ARCHITECTURE.md).
 
-Bộ phân công cho 22 nhiệm vụ còn lại T02–T23 nằm tại [.agents/BRANCHES.md](.agents/BRANCHES.md). Mỗi nhiệm vụ có phiếu `.agents/tasks/Txx.md` để ghi kết quả và bằng chứng trên chính nhánh đó; xem [cách cập nhật/review](.agents/README.md). Khởi tạo nhánh/phiếu không thay đổi trạng thái triển khai dưới đây.
+Phương án gom T02–T23 vào 8 nhóm nằm tại [.agents/BRANCHES.md](.agents/BRANCHES.md), hiện là đề xuất và chưa tạo các nhánh mới. Mỗi nhóm khi triển khai dùng báo cáo `.agents/reports/<nhom>.md`, theo dõi từng Txx bên trong; xem [cách cập nhật/review](.agents/README.md). Đợt 22 nhánh đã hủy không thay đổi trạng thái triển khai dưới đây.
 
 ## Cách theo dõi
 
 - Trạng thái: **Chưa làm**, **Đang làm**, **Bị chặn**, **Hoàn thành**.
 - Chỉ đánh dấu hoàn thành khi có đầu ra và bằng chứng đáp ứng yêu cầu liên quan. Có code hoặc có tài liệu chưa đồng nghĩa đã chạy thành công.
-- Khi bắt đầu một việc, ghi người thực hiện, mã Txx, phạm vi file/thành phần, đầu vào/đầu ra, nhánh/worktree thực tế, base/đích merge và mốc tuần dự kiến vào phiếu `.agents/tasks/Txx.md`. Khi bị chặn, ghi nguyên nhân và điều kiện tiếp tục; khi bàn giao, thêm liên kết file, kết quả kiểm tra hoặc run ID. Người tích hợp cập nhật trạng thái trong file này sau review/merge hoặc mốc tổng hợp.
+- Khi bắt đầu một việc, ghi người thực hiện, mã Txx, phạm vi file/thành phần, đầu vào/đầu ra, nhánh/worktree thực tế, base/đích merge và mốc tuần dự kiến vào báo cáo `.agents/reports/<nhom>.md`. Khi bị chặn, ghi nguyên nhân và điều kiện tiếp tục; khi bàn giao, thêm liên kết file, kết quả kiểm tra hoặc run ID. Người tích hợp cập nhật trạng thái trong file này theo từng Txx sau review/merge hoặc mốc tổng hợp.
 - Khi bàn giao tuần, ghi mã việc đã hoàn thành/chưa hoàn thành, nhánh, kiểm tra và giới hạn. Ghi commit merge hoặc liên kết PR khi đã tích hợp; nếu chưa thì ghi **Chưa merge**. Việc chuyển tuần giữ mã Txx và trạng thái thực tế, bổ sung phần còn lại và tuần tiếp tục. Có thể ghi tại dòng công việc hoặc phần bằng chứng bên dưới, không cần lặp lại toàn bộ kế hoạch.
 - Cột phụ thuộc xác định điều kiện hoàn tất trước khi nghiệm thu. Các nhiệm vụ ở nhiều tuần có thể phát triển song song: viết khung và kiểm thử bằng fixture/mock được ghi rõ trong lúc chờ đầu vào thật; không dùng kết quả giả thay cho phụ thuộc còn thiếu. Ghi riêng phần đã kiểm thử độc lập và phần còn chờ tích hợp.
 - Tách công việc thành dòng mới khi quá lớn; giữ mã hiện có để các tài liệu vẫn tham chiếu đúng.
 
-Nhánh nhiệm vụ dùng dạng `task/Txx-<noi-dung>`, ví dụ `task/T19-backend` và `task/T20-frontend`. Mỗi nhánh nhận một đầu ra rõ ràng và worktree riêng; thống nhất giao tiếp trước khi triển khai các phần liên quan. Có thể mở song song các phần dữ liệu, khảo sát mô hình/ASR, code huấn luyện, QC/đánh giá, backend, frontend và báo cáo. Thứ tự chạy thực nghiệm thật/merge phần phụ thuộc do điều kiện đầu vào quyết định. Quy tắc chi tiết tại [AGENTS.md](AGENTS.md#nhánh-và-worktree).
+Mỗi nhánh nhóm có phạm vi thành phần và worktree riêng, chứa các Txx liên quan; thống nhất giao tiếp trước khi triển khai. Có thể mở song song các phần dữ liệu, mô hình, tăng cường, đánh giá, backend, frontend, giọng nói và báo cáo. Thứ tự chạy thực nghiệm thật/merge phần phụ thuộc do điều kiện đầu vào quyết định. Quy tắc chi tiết tại [AGENTS.md](AGENTS.md#nhánh-và-worktree).
 
 ## Kế hoạch theo tuần
 
