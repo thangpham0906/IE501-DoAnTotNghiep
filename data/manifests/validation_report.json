@@ -1,0 +1,451 @@
+{
+  "schema_version": 1,
+  "snapshot_id": "intake-2026-11-01-v1",
+  "created_at_utc": "2026-10-31T17:35:03.310745+00:00",
+  "scope": "Local structural validation and admission triage only; not a linguistic or permission audit.",
+  "normalization_for_duplicate_check": "Unicode NFC, whitespace collapsed, casefold; original files are not modified.",
+  "summary": {
+    "raw_files": 8,
+    "raw_records": 527,
+    "raw_articles": 106,
+    "raw_candidate_pairs": 421,
+    "interim_document_candidates": 97,
+    "interim_monolingual_sentence_candidates": 174,
+    "quarantined_synthetic_records": 100,
+    "training_approved_records": 0
+  },
+  "files": [
+    {
+      "path": "data/raw/vov4/articles.jsonl",
+      "sha256": "9fd8d51e791cde711f23d63e4548220126c49c575911b290c13db42bc007299e",
+      "records": 106,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 0,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 106,
+      "records_with_body_blocks": 76,
+      "records_missing_source_url": 0,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 0,
+      "claimed_review_status_counts": {
+        "not_reviewed": 106
+      },
+      "claimed_license_status_counts": {
+        "permission_required": 106
+      },
+      "decision": "pending_review",
+      "training_approved": false
+    },
+    {
+      "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+      "sha256": "62c2471ee591735214d865b4fc9985ebebd4f1c3b378a6ac649c0b7c288e5570",
+      "records": 150,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 150,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 150,
+      "duplicate_normalized_pairs": 12,
+      "identical_normalized_sides": 34,
+      "claimed_review_status_counts": {
+        "community_extracted": 150
+      },
+      "claimed_license_status_counts": {
+        "not_recorded": 150
+      },
+      "decision": "pending_review",
+      "training_approved": false
+    },
+    {
+      "path": "data/raw/scripture/tay_scripture.jsonl",
+      "sha256": "bbc1ead4fe8e04d156a8cd2b38f12a613d908b36984111a71c973cdd6f63ceaa",
+      "records": 80,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 80,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 80,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 19,
+      "claimed_review_status_counts": {
+        "auto_extracted": 80
+      },
+      "claimed_license_status_counts": {
+        "not_recorded": 80
+      },
+      "decision": "pending_review",
+      "training_approved": false
+    },
+    {
+      "path": "data/raw/textbook/sgk_tay.jsonl",
+      "sha256": "06966803888209b9f9930c8b4e017c420e21a3f3a636f8c46c01fa9f1ee2608f",
+      "records": 22,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 22,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 22,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 5,
+      "claimed_review_status_counts": {
+        "gold_standard": 22
+      },
+      "claimed_license_status_counts": {
+        "not_recorded": 22
+      },
+      "decision": "pending_review",
+      "training_approved": false
+    },
+    {
+      "path": "data/raw/jw/tay_jw.jsonl",
+      "sha256": "d1c03d6d0b254759a38ae97a4a3351c612fc739597523d88e8a85171d1f40193",
+      "records": 50,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 50,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 50,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 4,
+      "claimed_review_status_counts": {
+        "auto_extracted": 50
+      },
+      "claimed_license_status_counts": {
+        "not_recorded": 50
+      },
+      "decision": "pending_review",
+      "training_approved": false
+    },
+    {
+      "path": "data/raw/local_news/articles.jsonl",
+      "sha256": "39601f28d69df3f174f1f830b872c1c3a3e9020acb16db8c58dbfcf9d18516d7",
+      "records": 30,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 30,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 30,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 15,
+      "claimed_review_status_counts": {
+        "community_extracted": 30
+      },
+      "claimed_license_status_counts": {
+        "not_recorded": 30
+      },
+      "decision": "pending_review",
+      "training_approved": false
+    },
+    {
+      "path": "data/raw/folk_songs/tay_folk_songs.jsonl",
+      "sha256": "caf9dc9cf7cbc0854bc993bfd2dd32f7acd1ed5c08f75a9a97f3812b89972765",
+      "records": 30,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 30,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 30,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 0,
+      "claimed_review_status_counts": {
+        "manually_curated": 30
+      },
+      "claimed_license_status_counts": {
+        "not_recorded": 30
+      },
+      "decision": "pending_review",
+      "training_approved": false
+    },
+    {
+      "path": "data/raw/dictionary/tay_vi_dict.jsonl",
+      "sha256": "c80b5e4b1e607eec0a8133d2b4ea38adb18803ffc48878695651b130471b8334",
+      "records": 59,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 59,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 59,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 2,
+      "claimed_review_status_counts": {
+        "manually_curated": 59
+      },
+      "claimed_license_status_counts": {
+        "not_recorded": 59
+      },
+      "decision": "pending_review",
+      "training_approved": false
+    },
+    {
+      "path": "data/interim/vov4_document_candidates.jsonl",
+      "sha256": "1e1b18e566760eecc99dc1e6b9aefa04424a1f35205c6fa6191ec8956421aad0",
+      "records": 97,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 2,
+      "tay_only": 95,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 0,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 0,
+      "claimed_review_status_counts": {
+        "needs_native_and_alignment_review": 97
+      },
+      "claimed_license_status_counts": {
+        "permission_required": 97
+      },
+      "decision": "pending_review",
+      "training_approved": false,
+      "source_urls_not_in_raw_vov4": 0
+    },
+    {
+      "path": "data/interim/vov4_sentence_candidates.jsonl",
+      "sha256": "12c010f94969a6bf62576f3bb5b3167d8bf2e19221d76415d273e94fe4afd006",
+      "records": 174,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 0,
+      "tay_only": 174,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 0,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 0,
+      "claimed_review_status_counts": {
+        "needs_native_and_alignment_review": 174
+      },
+      "claimed_license_status_counts": {
+        "permission_required": 174
+      },
+      "decision": "pending_review",
+      "training_approved": false,
+      "source_urls_not_in_raw_vov4": 0
+    },
+    {
+      "path": "data/quarantine/e1_backtranslation_rejected.jsonl",
+      "sha256": "838498e3b2835c9007a5fa78787b0954d990d06dd418fdfa965816938fc14fda",
+      "records": 100,
+      "json_parse_errors": 0,
+      "non_object_records": 0,
+      "both_text_fields_present": 100,
+      "tay_only": 0,
+      "vi_only": 0,
+      "records_without_tay_vi_fields": 0,
+      "records_with_body_blocks": 0,
+      "records_missing_source_url": 0,
+      "duplicate_normalized_pairs": 0,
+      "identical_normalized_sides": 0,
+      "claimed_review_status_counts": {
+        "needs_native_review": 100
+      },
+      "claimed_license_status_counts": {
+        "permission_required": 100
+      },
+      "decision": "quarantined",
+      "training_approved": false,
+      "source_urls_not_in_raw_vov4": 0,
+      "filter_status_counts": {
+        "rejected_automatic": 100
+      },
+      "quality_flag_counts": {
+        "length_ratio_outlier": 96,
+        "missing_vietnamese_context": 98,
+        "not_sentence_aligned": 2,
+        "number_mismatch": 30,
+        "output_too_short": 100,
+        "permission_not_confirmed": 100,
+        "sentence_split_heuristic": 100,
+        "source_not_clearly_tay": 17,
+        "summary_not_clearly_tay": 17,
+        "tay_nung_not_separated": 100,
+        "unknown_or_replacement_token": 100
+      },
+      "decision_reason": "All records have existing rejected_automatic status; retained only for error analysis."
+    }
+  ],
+  "raw_duplicate_pair_groups": [
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 4
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 110
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 11
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 103
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 20
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 121
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 21
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 122
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 22
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 105
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 23
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 116
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 24
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 118
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 25
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 114
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 26
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 115
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 30
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 113
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 32
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 125
+        }
+      ]
+    },
+    {
+      "occurrences": [
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 64
+        },
+        {
+          "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+          "record_number": 84
+        }
+      ]
+    }
+  ],
+  "not_performed": [
+    "External source verification",
+    "Native-speaker review",
+    "Permission confirmation",
+    "Near-duplicate detection",
+    "Sentence alignment validation",
+    "Train/validation/test leakage check"
+  ],
+  "next_steps": [
+    "Verify provenance and language before creating processed data.",
+    "Create train/validation/test only after review and deduplication.",
+    "Retain rejected synthetic records for error analysis only."
+  ]
+}

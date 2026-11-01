@@ -1,0 +1,1025 @@
+{
+  "created_at_utc": "2026-10-31T17:48:09.281267+00:00",
+  "files": [
+    {
+      "bytes": 104946,
+      "format": "jsonl",
+      "path": "data/interim/replay-2026-11-01/vov4_document_candidates.jsonl",
+      "records": 97,
+      "schema": {
+        "alignment_level": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "alignment_method": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "heuristic_scores": {
+          "present": 97,
+          "types": {
+            "dict": 97
+          }
+        },
+        "language_label": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "license_status": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "pair_id": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "quality_flags": {
+          "present": 97,
+          "types": {
+            "list": 97
+          }
+        },
+        "review_status": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "source_doc_id": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "source_name": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "source_type": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "source_url": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "synthetic": {
+          "present": 97,
+          "types": {
+            "bool": 97
+          }
+        },
+        "tay_text": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "vi_text": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        }
+      },
+      "sha256": "1e1b18e566760eecc99dc1e6b9aefa04424a1f35205c6fa6191ec8956421aad0"
+    },
+    {
+      "bytes": 173750,
+      "format": "jsonl",
+      "path": "data/interim/replay-2026-11-01/vov4_sentence_candidates.jsonl",
+      "records": 174,
+      "schema": {
+        "alignment_level": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "alignment_method": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "heuristic_scores": {
+          "present": 174,
+          "types": {
+            "dict": 174
+          }
+        },
+        "language_label": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "license_status": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "pair_id": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "quality_flags": {
+          "present": 174,
+          "types": {
+            "list": 174
+          }
+        },
+        "review_status": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "source_doc_id": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "source_name": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "source_type": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "source_url": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "synthetic": {
+          "present": 174,
+          "types": {
+            "bool": 174
+          }
+        },
+        "tay_text": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "vi_text": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        }
+      },
+      "sha256": "12c010f94969a6bf62576f3bb5b3167d8bf2e19221d76415d273e94fe4afd006"
+    },
+    {
+      "bytes": 104946,
+      "format": "jsonl",
+      "path": "data/interim/vov4_document_candidates.jsonl",
+      "records": 97,
+      "schema": {
+        "alignment_level": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "alignment_method": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "heuristic_scores": {
+          "present": 97,
+          "types": {
+            "dict": 97
+          }
+        },
+        "language_label": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "license_status": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "pair_id": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "quality_flags": {
+          "present": 97,
+          "types": {
+            "list": 97
+          }
+        },
+        "review_status": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "source_doc_id": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "source_name": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "source_type": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "source_url": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "synthetic": {
+          "present": 97,
+          "types": {
+            "bool": 97
+          }
+        },
+        "tay_text": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        },
+        "vi_text": {
+          "present": 97,
+          "types": {
+            "str": 97
+          }
+        }
+      },
+      "sha256": "1e1b18e566760eecc99dc1e6b9aefa04424a1f35205c6fa6191ec8956421aad0"
+    },
+    {
+      "bytes": 173750,
+      "format": "jsonl",
+      "path": "data/interim/vov4_sentence_candidates.jsonl",
+      "records": 174,
+      "schema": {
+        "alignment_level": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "alignment_method": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "heuristic_scores": {
+          "present": 174,
+          "types": {
+            "dict": 174
+          }
+        },
+        "language_label": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "license_status": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "pair_id": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "quality_flags": {
+          "present": 174,
+          "types": {
+            "list": 174
+          }
+        },
+        "review_status": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "source_doc_id": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "source_name": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "source_type": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "source_url": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "synthetic": {
+          "present": 174,
+          "types": {
+            "bool": 174
+          }
+        },
+        "tay_text": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        },
+        "vi_text": {
+          "present": 174,
+          "types": {
+            "str": 174
+          }
+        }
+      },
+      "sha256": "12c010f94969a6bf62576f3bb5b3167d8bf2e19221d76415d273e94fe4afd006"
+    },
+    {
+      "bytes": 118088,
+      "format": "jsonl",
+      "path": "data/quarantine/e1_backtranslation_rejected.jsonl",
+      "records": 100,
+      "schema": {
+        "alignment_level": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "alignment_method": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "filter_status": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "generation": {
+          "present": 100,
+          "types": {
+            "dict": 100
+          }
+        },
+        "generator": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "language_label": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "license_status": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "pair_id": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "quality_flags": {
+          "present": 100,
+          "types": {
+            "list": 100
+          }
+        },
+        "review_status": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "source_doc_id": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "source_type": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "source_url": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "synthetic": {
+          "present": 100,
+          "types": {
+            "bool": 100
+          }
+        },
+        "tay_is_synthetic": {
+          "present": 100,
+          "types": {
+            "bool": 100
+          }
+        },
+        "tay_text": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        },
+        "vi_is_synthetic": {
+          "present": 100,
+          "types": {
+            "bool": 100
+          }
+        },
+        "vi_text": {
+          "present": 100,
+          "types": {
+            "str": 100
+          }
+        }
+      },
+      "sha256": "838498e3b2835c9007a5fa78787b0954d990d06dd418fdfa965816938fc14fda"
+    },
+    {
+      "bytes": 17505,
+      "format": "jsonl",
+      "path": "data/raw/dictionary/tay_vi_dict.jsonl",
+      "records": 59,
+      "schema": {
+        "alignment_level": {
+          "present": 59,
+          "types": {
+            "str": 59
+          }
+        },
+        "domain": {
+          "present": 59,
+          "types": {
+            "str": 59
+          }
+        },
+        "retrieved_at": {
+          "present": 59,
+          "types": {
+            "str": 59
+          }
+        },
+        "review_status": {
+          "present": 59,
+          "types": {
+            "str": 59
+          }
+        },
+        "source_doc_id": {
+          "present": 59,
+          "types": {
+            "str": 59
+          }
+        },
+        "source_domain": {
+          "present": 59,
+          "types": {
+            "str": 59
+          }
+        },
+        "tay_text": {
+          "present": 59,
+          "types": {
+            "str": 59
+          }
+        },
+        "vi_text": {
+          "present": 59,
+          "types": {
+            "str": 59
+          }
+        }
+      },
+      "sha256": "c80b5e4b1e607eec0a8133d2b4ea38adb18803ffc48878695651b130471b8334"
+    },
+    {
+      "bytes": 9783,
+      "format": "jsonl",
+      "path": "data/raw/folk_songs/tay_folk_songs.jsonl",
+      "records": 30,
+      "schema": {
+        "alignment_level": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "domain": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "retrieved_at": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "review_status": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "source_doc_id": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "source_domain": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "tay_text": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "vi_text": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        }
+      },
+      "sha256": "caf9dc9cf7cbc0854bc993bfd2dd32f7acd1ed5c08f75a9a97f3812b89972765"
+    },
+    {
+      "bytes": 38015,
+      "format": "jsonl",
+      "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+      "records": 150,
+      "schema": {
+        "alignment_level": {
+          "present": 150,
+          "types": {
+            "str": 150
+          }
+        },
+        "domain": {
+          "present": 150,
+          "types": {
+            "str": 150
+          }
+        },
+        "retrieved_at": {
+          "present": 150,
+          "types": {
+            "str": 150
+          }
+        },
+        "review_status": {
+          "present": 150,
+          "types": {
+            "str": 150
+          }
+        },
+        "source_doc_id": {
+          "present": 150,
+          "types": {
+            "str": 150
+          }
+        },
+        "source_domain": {
+          "present": 150,
+          "types": {
+            "str": 150
+          }
+        },
+        "tay_text": {
+          "present": 150,
+          "types": {
+            "str": 150
+          }
+        },
+        "vi_text": {
+          "present": 150,
+          "types": {
+            "str": 150
+          }
+        }
+      },
+      "sha256": "62c2471ee591735214d865b4fc9985ebebd4f1c3b378a6ac649c0b7c288e5570"
+    },
+    {
+      "bytes": 16188,
+      "format": "jsonl",
+      "path": "data/raw/jw/tay_jw.jsonl",
+      "records": 50,
+      "schema": {
+        "alignment_level": {
+          "present": 50,
+          "types": {
+            "str": 50
+          }
+        },
+        "domain": {
+          "present": 50,
+          "types": {
+            "str": 50
+          }
+        },
+        "retrieved_at": {
+          "present": 50,
+          "types": {
+            "str": 50
+          }
+        },
+        "review_status": {
+          "present": 50,
+          "types": {
+            "str": 50
+          }
+        },
+        "source_doc_id": {
+          "present": 50,
+          "types": {
+            "str": 50
+          }
+        },
+        "source_domain": {
+          "present": 50,
+          "types": {
+            "str": 50
+          }
+        },
+        "tay_text": {
+          "present": 50,
+          "types": {
+            "str": 50
+          }
+        },
+        "vi_text": {
+          "present": 50,
+          "types": {
+            "str": 50
+          }
+        }
+      },
+      "sha256": "d1c03d6d0b254759a38ae97a4a3351c612fc739597523d88e8a85171d1f40193"
+    },
+    {
+      "bytes": 11011,
+      "format": "jsonl",
+      "path": "data/raw/local_news/articles.jsonl",
+      "records": 30,
+      "schema": {
+        "alignment_level": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "domain": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "retrieved_at": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "review_status": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "source_doc_id": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "source_domain": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "tay_text": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        },
+        "vi_text": {
+          "present": 30,
+          "types": {
+            "str": 30
+          }
+        }
+      },
+      "sha256": "39601f28d69df3f174f1f830b872c1c3a3e9020acb16db8c58dbfcf9d18516d7"
+    },
+    {
+      "bytes": 27661,
+      "format": "jsonl",
+      "path": "data/raw/scripture/tay_scripture.jsonl",
+      "records": 80,
+      "schema": {
+        "alignment_level": {
+          "present": 80,
+          "types": {
+            "str": 80
+          }
+        },
+        "domain": {
+          "present": 80,
+          "types": {
+            "str": 80
+          }
+        },
+        "retrieved_at": {
+          "present": 80,
+          "types": {
+            "str": 80
+          }
+        },
+        "review_status": {
+          "present": 80,
+          "types": {
+            "str": 80
+          }
+        },
+        "source_doc_id": {
+          "present": 80,
+          "types": {
+            "str": 80
+          }
+        },
+        "source_domain": {
+          "present": 80,
+          "types": {
+            "str": 80
+          }
+        },
+        "tay_text": {
+          "present": 80,
+          "types": {
+            "str": 80
+          }
+        },
+        "vi_text": {
+          "present": 80,
+          "types": {
+            "str": 80
+          }
+        }
+      },
+      "sha256": "bbc1ead4fe8e04d156a8cd2b38f12a613d908b36984111a71c973cdd6f63ceaa"
+    },
+    {
+      "bytes": 7271,
+      "format": "jsonl",
+      "path": "data/raw/textbook/sgk_tay.jsonl",
+      "records": 22,
+      "schema": {
+        "alignment_level": {
+          "present": 22,
+          "types": {
+            "str": 22
+          }
+        },
+        "domain": {
+          "present": 22,
+          "types": {
+            "str": 22
+          }
+        },
+        "retrieved_at": {
+          "present": 22,
+          "types": {
+            "str": 22
+          }
+        },
+        "review_status": {
+          "present": 22,
+          "types": {
+            "str": 22
+          }
+        },
+        "source_doc_id": {
+          "present": 22,
+          "types": {
+            "str": 22
+          }
+        },
+        "source_domain": {
+          "present": 22,
+          "types": {
+            "str": 22
+          }
+        },
+        "tay_text": {
+          "present": 22,
+          "types": {
+            "str": 22
+          }
+        },
+        "vi_text": {
+          "present": 22,
+          "types": {
+            "str": 22
+          }
+        }
+      },
+      "sha256": "06966803888209b9f9930c8b4e017c420e21a3f3a636f8c46c01fa9f1ee2608f"
+    },
+    {
+      "bytes": 192605,
+      "format": "jsonl",
+      "path": "data/raw/vov4/articles.jsonl",
+      "records": 106,
+      "schema": {
+        "alignment_level": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "body_blocks": {
+          "present": 106,
+          "types": {
+            "list": 106
+          }
+        },
+        "html_lang": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "language_label": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "license_status": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "media_urls": {
+          "present": 106,
+          "types": {
+            "list": 106
+          }
+        },
+        "published_text": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "retrieved_at": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "review_status": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "source_domain": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "source_section": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "source_url": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "summary_taynung_candidate": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        },
+        "title": {
+          "present": 106,
+          "types": {
+            "str": 106
+          }
+        }
+      },
+      "sha256": "9fd8d51e791cde711f23d63e4548220126c49c575911b290c13db42bc007299e"
+    },
+    {
+      "bytes": 15194,
+      "format": "text_log",
+      "path": "data/manifests/vov4_crawl.log",
+      "sha256": "fd3b3d96faf879fccaf67fde9b377dd734bfbe35ce934b59a05eb32b6feab39b"
+    }
+  ],
+  "record_count_note": "Do not sum records across processing stages or reproduction runs.",
+  "schema_version": 2,
+  "snapshot_id": "replay-2026-11-01",
+  "summary": {
+    "raw_files": 8,
+    "raw_records": 527,
+    "raw_records_with_both_text_fields": 421,
+    "registered_raw_files_missing": []
+  }
+}

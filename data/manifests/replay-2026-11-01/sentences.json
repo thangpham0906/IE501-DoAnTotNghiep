@@ -1,0 +1,83 @@
+{
+  "argv": [
+    "src/data_pipeline/build_vov_sentences.py",
+    "--input",
+    "data/interim/replay-2026-11-01/vov4_document_candidates.jsonl",
+    "--output",
+    "data/interim/replay-2026-11-01/vov4_sentence_candidates.jsonl",
+    "--manifest",
+    "data/manifests/replay-2026-11-01/sentences.json",
+    "--compare-to",
+    "data/interim/vov4_sentence_candidates.jsonl"
+  ],
+  "code": [
+    {
+      "bytes": 0,
+      "path": "src/data_pipeline/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7013,
+      "path": "src/data_pipeline/audit_data.py",
+      "sha256": "e7654929c8f406582af3e70a2972a7acb7c582719ced658516d831c7902ca765"
+    },
+    {
+      "bytes": 5466,
+      "path": "src/data_pipeline/build_vov_candidates.py",
+      "sha256": "14e99e09850e5a62117adb16ba860014772c8fe4d6959afd17a087551a1a7f11"
+    },
+    {
+      "bytes": 3256,
+      "path": "src/data_pipeline/build_vov_sentences.py",
+      "sha256": "a5f65ffc4d425c7106cac94f835ea68441ced21b92086b96d0fa219f2e5ac481"
+    },
+    {
+      "bytes": 6742,
+      "path": "src/data_pipeline/clean_dedup.py",
+      "sha256": "0afe9e081ba9b696799a726f7b85036ea36c3fe500cb5964a3e71fbd621ab778"
+    },
+    {
+      "bytes": 3412,
+      "path": "src/data_pipeline/common.py",
+      "sha256": "de4f5b544fc997d56b8116c726b037afebaf985d881cdbf7db85935495ac1629"
+    },
+    {
+      "bytes": 12172,
+      "path": "src/data_pipeline/crawl_vov4.py",
+      "sha256": "2bc24cce6a8ea7fdcc514dedf6fc9d0165aa3da56ff44816ca8aff6215a50922"
+    },
+    {
+      "bytes": 4696,
+      "path": "src/data_pipeline/split_dataset.py",
+      "sha256": "a8a2c01946d2143a1f5d3ddaadf90d632a697fb64fc2b506d146667ea70d792b"
+    }
+  ],
+  "comparison": {
+    "byte_identical": true,
+    "expected": {
+      "bytes": 173750,
+      "path": "data/interim/vov4_sentence_candidates.jsonl",
+      "sha256": "12c010f94969a6bf62576f3bb5b3167d8bf2e19221d76415d273e94fe4afd006"
+    },
+    "performed": true
+  },
+  "created_at_utc": "2026-10-31T17:48:08.873507+00:00",
+  "documents": 97,
+  "inputs": [
+    {
+      "bytes": 104946,
+      "path": "data/interim/replay-2026-11-01/vov4_document_candidates.jsonl",
+      "sha256": "1e1b18e566760eecc99dc1e6b9aefa04424a1f35205c6fa6191ec8956421aad0"
+    }
+  ],
+  "outputs": [
+    {
+      "bytes": 173750,
+      "path": "data/interim/replay-2026-11-01/vov4_sentence_candidates.jsonl",
+      "sha256": "12c010f94969a6bf62576f3bb5b3167d8bf2e19221d76415d273e94fe4afd006"
+    }
+  ],
+  "python": "3.12.3",
+  "sentence_candidates": 174,
+  "stage": "sentence_candidates"
+}

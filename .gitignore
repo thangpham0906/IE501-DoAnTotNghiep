@@ -1,0 +1,18 @@
+# Local corpora remain outside Git while provenance and usage are under review.
+/data/raw/
+/data/interim/
+/data/quarantine/
+/data/processed/
+/data/augmented/
+/data/manifests/*.log
+
+# Model artifacts, environments and secrets.
+/models/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.env.*
+!.env.example

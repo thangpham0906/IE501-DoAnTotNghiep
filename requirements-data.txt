@@ -1,0 +1,2 @@
+# Pipeline dữ liệu hiện tại chỉ dùng Python standard library (Python >= 3.10).
+# Chưa cần cài PyTorch/SentencePiece cho các lệnh xử lý và kiểm thử dữ liệu.

@@ -1,0 +1,164 @@
+{
+  "approved_records": 0,
+  "argv": [
+    "src/data_pipeline/clean_dedup.py",
+    "--manifest",
+    "data/manifests/replay-2026-11-01/cleaning.json"
+  ],
+  "code": [
+    {
+      "bytes": 0,
+      "path": "src/data_pipeline/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7013,
+      "path": "src/data_pipeline/audit_data.py",
+      "sha256": "e7654929c8f406582af3e70a2972a7acb7c582719ced658516d831c7902ca765"
+    },
+    {
+      "bytes": 5466,
+      "path": "src/data_pipeline/build_vov_candidates.py",
+      "sha256": "14e99e09850e5a62117adb16ba860014772c8fe4d6959afd17a087551a1a7f11"
+    },
+    {
+      "bytes": 3256,
+      "path": "src/data_pipeline/build_vov_sentences.py",
+      "sha256": "a5f65ffc4d425c7106cac94f835ea68441ced21b92086b96d0fa219f2e5ac481"
+    },
+    {
+      "bytes": 6742,
+      "path": "src/data_pipeline/clean_dedup.py",
+      "sha256": "0afe9e081ba9b696799a726f7b85036ea36c3fe500cb5964a3e71fbd621ab778"
+    },
+    {
+      "bytes": 3412,
+      "path": "src/data_pipeline/common.py",
+      "sha256": "de4f5b544fc997d56b8116c726b037afebaf985d881cdbf7db85935495ac1629"
+    },
+    {
+      "bytes": 12172,
+      "path": "src/data_pipeline/crawl_vov4.py",
+      "sha256": "2bc24cce6a8ea7fdcc514dedf6fc9d0165aa3da56ff44816ca8aff6215a50922"
+    },
+    {
+      "bytes": 4696,
+      "path": "src/data_pipeline/split_dataset.py",
+      "sha256": "a8a2c01946d2143a1f5d3ddaadf90d632a697fb64fc2b506d146667ea70d792b"
+    }
+  ],
+  "created_at_utc": "2026-10-31T17:48:09.061242+00:00",
+  "duplicate_approved_pairs": 0,
+  "input_records": 527,
+  "inputs": [
+    {
+      "bytes": 18887,
+      "path": "data/manifests/source_registry.json",
+      "sha256": "f7a914c02af008a2552f785bcca016b1722b8208e9f215042022c33d86a200ec"
+    },
+    {
+      "bytes": 192605,
+      "path": "data/raw/vov4/articles.jsonl",
+      "sha256": "9fd8d51e791cde711f23d63e4548220126c49c575911b290c13db42bc007299e"
+    },
+    {
+      "bytes": 38015,
+      "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+      "sha256": "62c2471ee591735214d865b4fc9985ebebd4f1c3b378a6ac649c0b7c288e5570"
+    },
+    {
+      "bytes": 27661,
+      "path": "data/raw/scripture/tay_scripture.jsonl",
+      "sha256": "bbc1ead4fe8e04d156a8cd2b38f12a613d908b36984111a71c973cdd6f63ceaa"
+    },
+    {
+      "bytes": 7271,
+      "path": "data/raw/textbook/sgk_tay.jsonl",
+      "sha256": "06966803888209b9f9930c8b4e017c420e21a3f3a636f8c46c01fa9f1ee2608f"
+    },
+    {
+      "bytes": 16188,
+      "path": "data/raw/jw/tay_jw.jsonl",
+      "sha256": "d1c03d6d0b254759a38ae97a4a3351c612fc739597523d88e8a85171d1f40193"
+    },
+    {
+      "bytes": 11011,
+      "path": "data/raw/local_news/articles.jsonl",
+      "sha256": "39601f28d69df3f174f1f830b872c1c3a3e9020acb16db8c58dbfcf9d18516d7"
+    },
+    {
+      "bytes": 9783,
+      "path": "data/raw/folk_songs/tay_folk_songs.jsonl",
+      "sha256": "caf9dc9cf7cbc0854bc993bfd2dd32f7acd1ed5c08f75a9a97f3812b89972765"
+    },
+    {
+      "bytes": 17505,
+      "path": "data/raw/dictionary/tay_vi_dict.jsonl",
+      "sha256": "c80b5e4b1e607eec0a8133d2b4ea38adb18803ffc48878695651b130471b8334"
+    }
+  ],
+  "kept_pairs": 0,
+  "normalization": "NFC and collapsed whitespace; dedup on casefolded pair",
+  "outputs": [],
+  "python": "3.12.3",
+  "source_decisions": [
+    {
+      "approved_records": 0,
+      "held_records": 106,
+      "path": "data/raw/vov4/articles.jsonl",
+      "reason": "source_not_approved",
+      "records": 106
+    },
+    {
+      "approved_records": 0,
+      "held_records": 150,
+      "path": "data/raw/glosbe/dictionary_pairs.jsonl",
+      "reason": "source_not_approved",
+      "records": 150
+    },
+    {
+      "approved_records": 0,
+      "held_records": 80,
+      "path": "data/raw/scripture/tay_scripture.jsonl",
+      "reason": "source_not_approved",
+      "records": 80
+    },
+    {
+      "approved_records": 0,
+      "held_records": 22,
+      "path": "data/raw/textbook/sgk_tay.jsonl",
+      "reason": "source_not_approved",
+      "records": 22
+    },
+    {
+      "approved_records": 0,
+      "held_records": 50,
+      "path": "data/raw/jw/tay_jw.jsonl",
+      "reason": "source_not_approved",
+      "records": 50
+    },
+    {
+      "approved_records": 0,
+      "held_records": 30,
+      "path": "data/raw/local_news/articles.jsonl",
+      "reason": "source_not_approved",
+      "records": 30
+    },
+    {
+      "approved_records": 0,
+      "held_records": 30,
+      "path": "data/raw/folk_songs/tay_folk_songs.jsonl",
+      "reason": "source_not_approved",
+      "records": 30
+    },
+    {
+      "approved_records": 0,
+      "held_records": 59,
+      "path": "data/raw/dictionary/tay_vi_dict.jsonl",
+      "reason": "source_not_approved",
+      "records": 59
+    }
+  ],
+  "stage": "clean_dedup",
+  "status": "no_approved_data"
+}

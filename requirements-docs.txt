@@ -1,0 +1,2 @@
+# Chỉ dùng để xuất PDF đề cương; không thuộc môi trường huấn luyện.
+reportlab==5.1.0
