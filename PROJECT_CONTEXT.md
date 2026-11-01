@@ -55,6 +55,8 @@ Lịch theo tuần, phân công và đầu ra nằm tại [TASKS.md](TASKS.md). 
 
 Ngày 01/11/2026, người dùng chọn triển khai song song các nhiệm vụ, mỗi nhiệm vụ có nhánh Git và worktree Orca riêng với phạm vi rõ ràng. Nhiệm vụ độc lập xuất phát từ `master` đã cập nhật; có thể bắt đầu các phần thuộc nhiều tuần cùng lúc. Lịch 11 tuần giữ vai trò mốc theo dõi và bàn giao; nhánh tuần dùng để tổng hợp khi cần, không buộc triển khai tuần tự. Các phần có thể xây dựng khung trước, nhưng chạy thực nghiệm/nghiệm thu vẫn phải đáp ứng phụ thuộc dữ liệu, mô hình và giao tiếp. Quy tắc thao tác nằm tại [AGENTS.md](AGENTS.md#nhánh-và-worktree), cách theo dõi nằm tại [TASKS.md](TASKS.md#cách-theo-dõi). Đây là điều chỉnh cách tổ chức công việc, giữ nguyên phạm vi nghiên cứu, lịch đăng ký và tiêu chí nghiệm thu.
 
+Theo yêu cầu tạo đồng loạt các nhánh, bộ phân công T02–T23 và phiếu báo cáo riêng cho từng nhánh được đặt tại [.agents](.agents/README.md). Mỗi agent ghi việc đã làm, bằng chứng, giới hạn và kết quả review vào phiếu của mình; `TASKS.md` giữ vai trò tổng hợp để tránh mọi nhánh cùng sửa bảng tiến độ. Việc có nhánh/worktree không xác nhận công việc đã bắt đầu hoặc hoàn thành.
+
 PDF hiện tại đã sử dụng lịch này ở thông tin đầu đề và bảng kế hoạch. Đã lưu [bản trước cập nhật lần đầu](docs/archive/DeCuongDATN_25410304_25410313_truoc_cap_nhat_2026-11-01.pdf) và [bản trước sửa theo review lần 2](docs/archive/DeCuongDATN_25410304_25410313_truoc_review_lan_2_2026-11-01.pdf) để đối chiếu. [Bản Markdown](docs/DeCuongDATN_25410304_25410313.md) dùng để chỉnh nội dung; [nhật ký review](docs/REVIEW_DE_CUONG.md) ghi các mục đã sửa và cách xuất PDF. Các quyết định kỹ thuật còn mở tiếp tục theo dõi tại D01–D04.
 
 ## Ghi nhận về dữ liệu
