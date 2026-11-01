@@ -19,7 +19,7 @@ Cập nhật: **01/11/2026**.
 
 - Trạng thái: **Chưa làm**, **Đang làm**, **Bị chặn**, **Hoàn thành**.
 - Chỉ đánh dấu hoàn thành khi có đầu ra và bằng chứng đáp ứng yêu cầu liên quan. Có code hoặc có tài liệu chưa đồng nghĩa đã chạy thành công.
-- Khi bắt đầu một việc, ghi người thực hiện, tuần và nhánh đang làm; khi bị chặn, ghi nguyên nhân và điều kiện tiếp tục; khi hoàn thành, thêm liên kết file, kết quả kiểm tra hoặc run ID.
+- Khi bắt đầu một việc, ghi người thực hiện, tuần, nhánh và worktree/đường dẫn thực tế đang làm; khi bị chặn, ghi nguyên nhân và điều kiện tiếp tục; khi hoàn thành, thêm liên kết file, kết quả kiểm tra hoặc run ID.
 - Khi bàn giao tuần, ghi mã việc đã hoàn thành/chưa hoàn thành, nhánh, kiểm tra và giới hạn. Ghi commit merge hoặc liên kết PR khi đã tích hợp; nếu chưa thì ghi **Chưa merge**. Việc chuyển tuần giữ mã Txx và trạng thái thực tế, bổ sung phần còn lại và tuần tiếp tục. Có thể ghi tại dòng công việc hoặc phần bằng chứng bên dưới, không cần lặp lại toàn bộ kế hoạch.
 - Cột phụ thuộc xác định điều kiện hoàn tất trước khi nghiệm thu. Có thể chuẩn bị các phần độc lập trong lúc chờ; không dùng kết quả giả thay cho phụ thuộc còn thiếu.
 - Tách công việc thành dòng mới khi quá lớn; giữ mã hiện có để các tài liệu vẫn tham chiếu đúng.
@@ -28,7 +28,7 @@ Cập nhật: **01/11/2026**.
 
 Khung ngày đã được người dùng thống nhất. Phân bổ công việc dưới đây dùng phạm vi Việt–Tày và phân công của nhóm; các đầu ra là mục tiêu, không phải kết quả đã đạt. Tuần 11 chỉ có 4 ngày.
 
-Các tên nhánh dưới đây là quy ước cho từng tuần, không phải bằng chứng nhánh đã tồn tại hoặc công việc đã hoàn thành. Cách tạo, tích hợp và bàn giao được quy định tại [AGENTS.md](AGENTS.md#làm-việc-theo-nhánh-tuần).
+Các tên nhánh dưới đây là quy ước cho từng tuần, không phải bằng chứng nhánh/worktree đã tồn tại hoặc công việc đã hoàn thành. Trong Orca, mỗi nhánh tuần được làm trong một worktree có thư mục riêng; tên hiển thị nên trùng tên nhánh, đường dẫn và ID lấy từ kết quả Orca tạo thực tế. Cách tạo, tích hợp và bàn giao được quy định tại [AGENTS.md](AGENTS.md#làm-việc-theo-nhánh-tuần).
 
 | Tuần | Nhánh dự kiến | Thời gian | Phạm Quốc Thắng | Lê Minh Thiện | Kết quả mong đợi / công việc liên quan |
 | --- | --- | --- | --- | --- | --- |
