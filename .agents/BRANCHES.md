@@ -1,40 +1,32 @@
-# Phương án phân chia nhánh
+# Phân công 3 nhánh
 
-**Trạng thái: đề xuất 8 nhánh triển khai; chưa tạo.** Đợt 22 nhánh `task/T02-...` đến `task/T23-...` đã được xóa theo yêu cầu người dùng ngày 01/11/2026.
+**Đã chốt với người dùng ngày 01/11/2026:** dùng 3 nhánh triển khai, mỗi nhánh có một worktree Orca riêng. Các mã Txx là checklist trong nhóm; lịch tuần dùng để theo dõi/bàn giao. `master` là nơi tích hợp.
 
-## Cách chia đề xuất
+| Nhóm | Nhánh Git | Workspace Orca | Txx phụ trách | Báo cáo |
+| --- | --- | --- | --- | --- |
+| translation-pipeline | `feat/translation-pipeline` | `translation-pipeline` | T02, T03, T04, T06, T07, T08, T09, T10, T11, T12, T13, T14, T15, T16, T17, T18 | [translation-pipeline.md](reports/translation-pipeline.md) |
+| web-demo | `feat/web-demo` | `web-demo` | T05, T19, T20, T21, T22 | [web-demo.md](reports/web-demo.md) |
+| report | `docs/report` | `report` | T23 | [report.md](reports/report.md) |
 
-Gom theo thành phần sở hữu code và đầu ra, giữ các bước dùng chung pipeline trong một nhóm. Các mã Txx vẫn giữ nguyên để quản lý tiến độ chi tiết trong [TASKS.md](../TASKS.md).
+Các nhóm xuất phát từ `master` chứa bộ phân công này và tích hợp về `master`. Việc có nhánh/báo cáo không có nghĩa các Txx đã bắt đầu hoặc hoàn thành. Trạng thái dự án nằm tại [TASKS.md](../TASKS.md); cách cập nhật bằng chứng tại [README.md](README.md).
 
-| Nhóm / tên báo cáo | Nhánh đề xuất | Txx phụ trách chính | Phạm vi |
-| --- | --- | --- | --- |
-| `data` | `feat/data-pipeline` | T03, T07, T08, T09, T10 | Nguồn, kiểm định, làm sạch, chia tập và manifest |
-| `model` | `feat/model-training` | T02, T06, T11, T12, T16, T17 | Khảo sát mô hình, nền Python, pipeline train, E0 và các lượt thực nghiệm |
-| `augmentation` | `feat/data-augmentation` | T14, T15 | Đơn ngữ, dịch ngược U, QC và các tập đối chứng |
-| `evaluation` | `feat/evaluation` | T04, T13, T18 | Protocol, metric, chấm người và phân tích lỗi |
-| `backend` | `feat/backend` | T19, T22 | API dịch, tích hợp hệ thống và đóng gói vận hành |
-| `frontend` | `feat/frontend` | T20 | Giao diện dịch văn bản và API client |
-| `speech` | `feat/speech` | T05, T21 | Khảo sát ASR, transcript và luồng giọng nói |
-| `report` | `docs/report` | T23 | Báo cáo, slide và kịch bản bảo vệ |
+## Phạm vi từng nhóm
 
-Báo cáo của mỗi nhóm khi triển khai đặt tại `.agents/reports/<nhom>.md`, dùng [mẫu chung](REPORT_TEMPLATE.md). Các file báo cáo nhóm chưa được tạo ở giai đoạn xem lại phương án.
+- **translation-pipeline:** dữ liệu, mô hình, huấn luyện, dịch ngược/QC và đánh giá. Giữ các module `data_pipeline/`, `models/`, `augmentation/`, `evaluation/` riêng; commit và báo cáo theo Txx.
+- **web-demo:** backend, frontend, ASR/transcript, tích hợp và đóng gói. Giữ các module riêng trong `src/web_app/`; dùng adapter suy luận của pipeline.
+- **report:** báo cáo, slide, trích dẫn và kịch bản bảo vệ; lấy bằng chứng từ hai nhóm kỹ thuật.
 
-## Vì sao 8 nhóm
+T06 do pipeline chủ trì về nền Python/cấu hình chung, phối hợp nhu cầu phụ thuộc của web. T22 do web chủ trì về tích hợp/bàn giao; checkpoint phải có bằng chứng lựa chọn bằng validation từ pipeline. Report phối hợp tài liệu bàn giao.
 
-- Dữ liệu dùng chung quy trình nguồn → duyệt → làm sạch → chia tập; tách từng bước thành nhánh dài hạn làm tăng giao tiếp và sửa trùng.
-- Khảo sát model, tokenizer, loader và các lượt train dùng cùng lõi huấn luyện, nên cùng một nhóm.
-- Dịch ngược/QC và metric/đánh giá có code, đầu vào/đầu ra riêng nên có thể phát triển song song với nhóm mô hình.
-- Backend, frontend và giọng nói có phạm vi riêng; thống nhất API/adapter trước để làm độc lập bằng fixture/mock.
-- Báo cáo có thể viết phần phương pháp từ sớm và cập nhật bằng chứng khi thực nghiệm xong.
+## Giao tiếp cần thống nhất sớm
 
-Đây là phương án tổ chức cho cấu trúc hiện tại, không phải con số bắt buộc. Tách thêm nhánh nhỏ khi có công việc độc lập cụ thể và người phụ trách; không tạo hàng loạt theo số lượng checkbox.
+- Pipeline cung cấp giao diện suy luận và cách nạp checkpoint/tokenizer/config theo phiên bản; web gọi giao diện này, không tạo một pipeline huấn luyện riêng trong API.
+- Hai nhóm kỹ thuật thống nhất trường văn bản, nhãn chiều dịch, kết quả/model metadata, lỗi khi model chưa sẵn sàng và giới hạn đầu vào. Chi tiết được chốt tại [ARCHITECTURE.md](../ARCHITECTURE.md) khi triển khai.
+- Web tự thống nhất API/client và adapter ASR bên trong nhánh; chỉ bật ngôn ngữ âm thanh đã kiểm chứng.
+- Report nhận số liệu/bản dịch/phiếu chấm/log thật và mô tả giới hạn; không tự điền kết quả khi upstream chưa chạy.
 
-## Ranh giới cần thống nhất
+## Thực hiện và review
 
-- `model` chủ trì T06 về môi trường Python/cấu hình nền; các nhóm phối hợp phụ thuộc và giao tiếp, không tự ghi đè cấu hình chung.
-- `backend` chủ trì T22 về tích hợp/đóng gói; cần đầu ra của model, frontend và speech. `report` phối hợp tài liệu bàn giao.
-- `model` sở hữu adapter suy luận/checkpoint; `backend` sở hữu API văn bản; `speech` sở hữu adapter ASR và phần âm thanh; `frontend` sở hữu UI văn bản.
-- `augmentation` xuất U và các tập QC/đối chứng; `model` dùng chúng để train. `evaluation` không chỉnh mô hình hoặc QC theo kết quả test.
-- Các nhóm có thể viết khung/kiểm thử đồng thời; chạy thực nghiệm thật và nghiệm thu vẫn phải có dữ liệu, model, người duyệt/chấm theo yêu cầu dự án.
+Có thể phát triển đồng thời cả ba nhóm: pipeline và web kiểm thử bằng fixture/mock được ghi rõ khi chưa đủ đầu vào; report viết phần phương pháp trước. Huấn luyện/đánh giá/nghiệm thu demo thật vẫn theo phụ thuộc và tiêu chí dự án.
 
-`master` là nơi tích hợp, không tính trong 8 nhánh. Lịch tuần là mốc bàn giao; không cần duy trì thêm một nhánh riêng cho mỗi tuần. Quy trình báo cáo/review nằm tại [README.md](README.md).
+Review và merge từng phần ổn định theo Txx; không đợi toàn bộ nhóm hoàn thành. Mỗi nhóm chỉ cập nhật báo cáo của mình; người tích hợp tổng hợp `TASKS.md`. Không tạo thêm nhánh theo từng tuần hoặc từng Txx chỉ vì có checkbox; việc tách thêm nhánh cần thuộc phạm vi công việc được giao.
