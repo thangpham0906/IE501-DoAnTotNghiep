@@ -24,7 +24,7 @@ Hệ đào tạo: Đào tạo từ xa — Trường Đại học Công nghệ Th
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Thành phần hệ thống, luồng dữ liệu và cấu trúc mã nguồn dự kiến |
 | [PROJECT_REQUIREMENTS.md](PROJECT_REQUIREMENTS.md) | Yêu cầu chức năng, chất lượng và tiêu chí nghiệm thu |
 | [TASKS.md](TASKS.md) | Trạng thái hiện tại, công việc, phụ thuộc và bằng chứng hoàn thành |
-| [.agents/README.md](.agents/README.md) | Quy định giao việc, cập nhật báo cáo và review theo nhánh; [danh sách 22 nhánh](.agents/BRANCHES.md) |
+| [.agents/README.md](.agents/README.md) | Quy định báo cáo/review theo nhóm; [phương án phân chia nhánh](.agents/BRANCHES.md) |
 | [Quy trình xây dựng dữ liệu](docs/QUY_TRINH_XAY_DUNG_DU_LIEU.md) | Từng bước tạo file trong `data/`, lệnh đã chạy, kết quả và nội dung báo cáo tiến độ |
 | [AGENTS.md](AGENTS.md) | Hướng dẫn dành cho agent làm việc với repo |
 
