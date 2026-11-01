@@ -19,18 +19,20 @@ Cập nhật: **01/11/2026**.
 
 - Trạng thái: **Chưa làm**, **Đang làm**, **Bị chặn**, **Hoàn thành**.
 - Chỉ đánh dấu hoàn thành khi có đầu ra và bằng chứng đáp ứng yêu cầu liên quan. Có code hoặc có tài liệu chưa đồng nghĩa đã chạy thành công.
-- Khi bắt đầu một việc, ghi người thực hiện, tuần, nhánh và worktree/đường dẫn thực tế đang làm; khi bị chặn, ghi nguyên nhân và điều kiện tiếp tục; khi hoàn thành, thêm liên kết file, kết quả kiểm tra hoặc run ID.
+- Khi bắt đầu một việc, ghi người thực hiện, mã Txx, phạm vi file/thành phần, đầu vào/đầu ra, nhánh/worktree thực tế, base/đích merge và mốc tuần dự kiến. Khi bị chặn, ghi nguyên nhân và điều kiện tiếp tục; khi hoàn thành, thêm liên kết file, kết quả kiểm tra hoặc run ID.
 - Khi bàn giao tuần, ghi mã việc đã hoàn thành/chưa hoàn thành, nhánh, kiểm tra và giới hạn. Ghi commit merge hoặc liên kết PR khi đã tích hợp; nếu chưa thì ghi **Chưa merge**. Việc chuyển tuần giữ mã Txx và trạng thái thực tế, bổ sung phần còn lại và tuần tiếp tục. Có thể ghi tại dòng công việc hoặc phần bằng chứng bên dưới, không cần lặp lại toàn bộ kế hoạch.
-- Cột phụ thuộc xác định điều kiện hoàn tất trước khi nghiệm thu. Có thể chuẩn bị các phần độc lập trong lúc chờ; không dùng kết quả giả thay cho phụ thuộc còn thiếu.
+- Cột phụ thuộc xác định điều kiện hoàn tất trước khi nghiệm thu. Các nhiệm vụ ở nhiều tuần có thể phát triển song song: viết khung và kiểm thử bằng fixture/mock được ghi rõ trong lúc chờ đầu vào thật; không dùng kết quả giả thay cho phụ thuộc còn thiếu. Ghi riêng phần đã kiểm thử độc lập và phần còn chờ tích hợp.
 - Tách công việc thành dòng mới khi quá lớn; giữ mã hiện có để các tài liệu vẫn tham chiếu đúng.
+
+Nhánh nhiệm vụ dùng dạng `task/Txx-<noi-dung>`, ví dụ `task/T19-backend` và `task/T20-frontend`. Mỗi nhánh nhận một đầu ra rõ ràng và worktree riêng; thống nhất giao tiếp trước khi triển khai các phần liên quan. Có thể mở song song các phần dữ liệu, khảo sát mô hình/ASR, code huấn luyện, QC/đánh giá, backend, frontend và báo cáo. Thứ tự chạy thực nghiệm thật/merge phần phụ thuộc do điều kiện đầu vào quyết định. Quy tắc chi tiết tại [AGENTS.md](AGENTS.md#nhánh-và-worktree).
 
 ## Kế hoạch theo tuần
 
-Khung ngày đã được người dùng thống nhất. Phân bổ công việc dưới đây dùng phạm vi Việt–Tày và phân công của nhóm; các đầu ra là mục tiêu, không phải kết quả đã đạt. Tuần 11 chỉ có 4 ngày.
+Khung ngày đã được người dùng thống nhất. Phân bổ công việc dưới đây dùng phạm vi Việt–Tày và phân công của nhóm; các đầu ra là mục tiêu, không phải kết quả đã đạt. Đây là mốc tổng hợp/bàn giao; có thể triển khai sớm và song song các nhiệm vụ thuộc nhiều tuần. Tuần 11 chỉ có 4 ngày.
 
-Các tên nhánh dưới đây là quy ước cho từng tuần, không phải bằng chứng nhánh/worktree đã tồn tại hoặc công việc đã hoàn thành. Trong Orca, mỗi nhánh tuần được làm trong một worktree có thư mục riêng; tên hiển thị nên trùng tên nhánh, đường dẫn và ID lấy từ kết quả Orca tạo thực tế. Cách tạo, tích hợp và bàn giao được quy định tại [AGENTS.md](AGENTS.md#làm-việc-theo-nhánh-tuần).
+Các tên nhánh tuần dưới đây dùng để tổng hợp khi cần; nhánh nhiệm vụ có thể merge trực tiếp về `master` nếu đó là đích đã xác định. Bảng không phải bằng chứng nhánh/worktree đã tồn tại hoặc công việc đã hoàn thành. Trong Orca, mỗi nhánh được làm trong một worktree có thư mục riêng; đường dẫn và ID lấy từ kết quả tạo thực tế. Cách tạo, tích hợp và bàn giao được quy định tại [AGENTS.md](AGENTS.md#nhánh-và-worktree).
 
-| Tuần | Nhánh dự kiến | Thời gian | Phạm Quốc Thắng | Lê Minh Thiện | Kết quả mong đợi / công việc liên quan |
+| Tuần | Nhánh tổng hợp khi cần | Thời gian | Phạm Quốc Thắng | Lê Minh Thiện | Kết quả mong đợi / công việc liên quan |
 | --- | --- | --- | --- | --- | --- |
 | 1 | `week-01-khao-sat-nguon` | 05/11/2026–11/11/2026 | Chọn nguồn chủ lực, xác nhận người duyệt; tổ chức lô rà thử tối đa 30 cặp có nguồn; phác thảo web/giọng nói | Khảo sát mô hình, tokenizer, phần cứng và cách đánh giá | Nguồn, người duyệt, phạm vi chữ viết/ngữ liệu; thời gian và tỷ lệ đạt của lô thử hoặc trở ngại cần xử lý — T02, T03, chuẩn bị T04/T05 |
 | 2 | `week-02-chot-du-lieu-mo-hinh` | 12/11/2026–18/11/2026 | Chốt quy mô/lịch duyệt, số mẫu và người chấm thủ công; thử ASR, thiết kế giao diện | Đo chi phí chạy thử, chốt mô hình, ngân sách 6 cấu hình và giao tiếp suy luận | Số mẫu từng tập; nhân lực chấm; phần cứng, giới hạn bước/giờ và phạm vi âm thanh; điều chỉnh với GVHD nếu cần — T02, T04, T05, T06, T07/T08 |
