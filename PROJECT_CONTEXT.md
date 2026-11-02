@@ -47,6 +47,12 @@ Theo yêu cầu người dùng, bổ sung E1-M lấy ngẫu nhiên cùng số m�
 
 D02 có mốc xác nhận nguồn/người duyệt và rà thử tối đa 30 cặp có nguồn ở tuần 1; cuối tuần 2 chốt quy mô từng tập từ tốc độ duyệt và nguồn thực có. D03 dự kiến chấm 50 câu mỗi chiều trên 4 cấu hình, tương ứng 400 bản dịch, có ẩn tên hệ thống, thang điểm 1–5 và chấm độc lập một phần nếu có người thứ hai. Các mức này phục vụ lập kế hoạch, chưa xác nhận nhân lực hoặc số mẫu đạt được; số chính thức phải chốt sau khảo sát. Quy tắc nghiệm thu nằm tại [PROJECT_REQUIREMENTS.md](PROJECT_REQUIREMENTS.md).
 
+### Đề xuất triển khai web sau review — 02/11/2026
+
+Theo yêu cầu sửa [đặc tả web demo](docs/SPECS_WEB_DEMO.md), nhánh web đề xuất giao diện HTML/CSS/Vanilla JavaScript cùng FastAPI thay cho React dự kiến, nhằm giảm phụ thuộc công cụ build và đóng gói tài nguyên giao diện cục bộ. Phiên bản đầu giới hạn upload ở WAV PCM, giữ luồng tiếng Việt → transcript được rà soát → dịch Tày; cách chạy và giới hạn cụ thể nằm trong đặc tả. Đây là phương án thiết kế chưa triển khai, không phải xác nhận GVHD đã duyệt thay đổi công nghệ.
+
+D01 và D04 giữ trạng thái còn mở. Web nhận adapter/bundle từ pipeline, không chốt thay họ mô hình, token Tày hoặc số checkpoint cho hai chiều. Nghiệm thu mô hình/ASR thật vẫn cần bằng chứng theo T05, T11/T12 và T19–T22; việc hoàn thiện đặc tả không thay thế các mốc này.
+
 ## Thời gian thực hiện
 
 Khung thời gian sử dụng cho dự án: **05/11/2026–17/01/2027**, được người dùng thống nhất ngày **01/11/2026**. Kế hoạch gồm **11 tuần công việc**: 10 tuần đủ 7 ngày và tuần cuối từ 14–17/01/2027 (4 ngày), không phải 11 tuần trọn vẹn.

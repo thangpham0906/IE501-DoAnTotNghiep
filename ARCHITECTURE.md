@@ -143,19 +143,31 @@ JSONL dự kiến dùng cho dữ liệu theo bản ghi; JSON dùng cho manifest 
 
 ```mermaid
 flowchart LR
-    U[Giao diện web] --> API[Backend API]
+    U[Giao diện web] -->|Văn bản hoặc transcript đã xác nhận| API[Backend API]
     API --> TXT[Kiểm tra văn bản và chiều dịch]
     TXT --> MT[Dịch bằng checkpoint đã chọn]
     API --> ASR[Nhận dạng âm thanh]
-    ASR --> TXT
     MT --> R[Bản dịch và thông tin mô hình]
     ASR --> TR[Văn bản nhận dạng]
     R --> U
     TR --> U
 ```
 
-React, FastAPI, PyTorch và Whisper là các công nghệ được nêu trong đề cương; phiên bản và cấu hình triển khai chưa chốt. Backend gọi thành phần suy luận dùng chung với đánh giá, không huấn luyện mô hình trong yêu cầu dịch.
+React, FastAPI, PyTorch và Whisper là các công nghệ được nêu trong đề cương; phiên bản và cấu hình triển khai chưa chốt. Phương án web ngày 02/11/2026 đề xuất HTML/CSS/Vanilla JavaScript cùng FastAPI; lý do và trạng thái đề xuất nằm tại [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md). Backend gọi thành phần suy luận dùng chung với đánh giá, không huấn luyện mô hình trong yêu cầu dịch.
 
-Giao tiếp dịch văn bản dự kiến nhận văn bản, ngôn ngữ nguồn và đích; trả bản dịch, chiều dịch và phiên bản mô hình. Giao tiếp giọng nói trả thêm văn bản nhận dạng để người dùng kiểm tra. Tên endpoint và schema API sẽ được xác định khi triển khai.
+### Giao tiếp web đề xuất — 02/11/2026
+
+Hợp đồng dưới đây phục vụ phối hợp T06/T11/T19 và cần được hai nhóm xác nhận trước khi tích hợp thật. Chi tiết schema, lỗi, cấu hình và kiểm thử nằm trong [SPECS_WEB_DEMO.md](docs/SPECS_WEB_DEMO.md); chưa có endpoint hoặc adapter đã chạy để nghiệm thu.
+
+| Giao tiếp | Hợp đồng đề xuất |
+| --- | --- |
+| `POST /api/translate` | Nhận `text`, `direction`, `model_id` tùy chọn; trả bản dịch, chiều, mã ngôn ngữ, metadata artifact, nhãn mock và thời gian chờ/chạy |
+| `POST /api/asr/transcribe` | Nhận một WAV PCM 16 kHz/mono/16-bit và `language=vi`; trả transcript, metadata ASR, nhãn mock và giới hạn PoC; không tự gọi dịch |
+| `GET /api/health` | Trạng thái riêng từng engine, khả năng đang phục vụ và giới hạn đầu vào; HTTP 200 chỉ xác nhận ứng dụng có phản hồi |
+| `GET /api/models` | Bundle dịch đang phục vụ hoặc danh sách rỗng; metric có nguồn theo chiều hoặc `null` |
+
+Chiều `vi-tay` ánh xạ `vi` → `tyz`, `tay-vi` ánh xạ ngược lại ở tầng API. Token/ngôn ngữ của mô hình lấy từ cấu hình pipeline đã kiểm chứng, không mặc định một token Tày. Pipeline sở hữu loader, tokenizer và generation dùng chung; web nối qua `InferenceEngine` và quản lý runner hữu hạn. Một bundle có thể chứa một model hai chiều hoặc hai model theo chiều tùy D01; `model_id` không đồng nghĩa chỉ có một checkpoint.
+
+Bundle thật cần manifest có phiên bản schema, định danh model/tokenizer, checksum, cấu hình ngôn ngữ/giải mã và ánh xạ theo chiều. Thiếu hoặc sai trường bắt buộc thì engine không ready; không lấy tên thư mục hoặc điểm mặc định để thay metadata. Bằng chứng chọn checkpoint bằng validation là điều kiện bàn giao T22. T19/T20 có thể tích hợp baseline sau T11/T12.
 
 Chỉ bật chiều dịch/ngôn ngữ âm thanh đã kiểm chứng. Backend cần xử lý đầu vào rỗng, chiều không hỗ trợ, quá giới hạn, mô hình chưa sẵn sàng và lỗi suy luận; giới hạn cụ thể dựa trên thử nghiệm tài nguyên.
