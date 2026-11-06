@@ -1,0 +1,497 @@
+/**
+ * voice.css - Giao diện thử nghiệm giọng nói (§6.3).
+ *
+ * Scoped hoàn toàn dưới .voice-panel để tránh ảnh hưởng tab dịch văn bản.
+ * Bảng màu: Sáng trung tính (slate) + Xanh đậm (navy/indigo) + Cảnh báo hổ phách (amber).
+ */
+
+.voice-panel {
+  --vp-bg: #ffffff;
+  --vp-surface: #f8fafc;
+  --vp-surface-hover: #f1f5f9;
+  --vp-border: #cbd5e1;
+  --vp-border-focus: #2563eb;
+  --vp-text: #0f172a;
+  --vp-text-muted: #64748b;
+  --vp-primary: #1e3a8a;
+  --vp-primary-hover: #1d4ed8;
+  --vp-primary-active: #172554;
+  --vp-danger: #dc2626;
+  --vp-danger-hover: #b91c1c;
+  --vp-danger-bg: #fef2f2;
+  --vp-danger-border: #fca5a5;
+  --vp-warning-bg: #fffbeb;
+  --vp-warning-border: #fcd34d;
+  --vp-warning-text: #92400e;
+  --vp-mock-bg: #f5f3ff;
+  --vp-mock-border: #c4b5fd;
+  --vp-mock-text: #5b21b6;
+  --vp-success-bg: #ecfdf5;
+  --vp-success-border: #a7f3d0;
+  --vp-success-text: #065f46;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--vp-text);
+  background: var(--vp-bg);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
+.voice-panel * {
+  box-sizing: border-box;
+}
+
+/* Banner Cảnh báo §6.3 */
+.voice-panel .vp-warning-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background-color: var(--vp-warning-bg);
+  border: 1px solid var(--vp-warning-border);
+  color: var(--vp-warning-text);
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.925rem;
+  line-height: 1.5;
+}
+
+.voice-panel .vp-warning-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Thanh thông tin hệ thống & Badges */
+.voice-panel .vp-status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--vp-surface);
+  border: 1px solid var(--vp-border);
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.voice-panel .vp-status-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.voice-panel .vp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.voice-panel .vp-badge-ready {
+  background: var(--vp-success-bg);
+  color: var(--vp-success-text);
+  border: 1px solid var(--vp-success-border);
+}
+
+.voice-panel .vp-badge-mock {
+  background: var(--vp-mock-bg);
+  color: var(--vp-mock-text);
+  border: 1px solid var(--vp-mock-border);
+}
+
+.voice-panel .vp-badge-disabled,
+.voice-panel .vp-badge-loading {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+/* Hộp thông tin định dạng WAV */
+.voice-panel .vp-format-hint {
+  color: var(--vp-text-muted);
+  font-size: 0.825rem;
+}
+
+/* Bộ chuyển đổi chế độ đầu vào (Tabs) */
+.voice-panel .vp-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--vp-border);
+  margin-bottom: 1.25rem;
+}
+
+.voice-panel .vp-tab-btn {
+  background: none;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--vp-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s ease-in-out;
+}
+
+.voice-panel .vp-tab-btn:hover {
+  color: var(--vp-primary-hover);
+}
+
+.voice-panel .vp-tab-btn.active {
+  color: var(--vp-primary);
+  border-bottom-color: var(--vp-primary);
+}
+
+/* Khối nội dung từng phần */
+.voice-panel .vp-card {
+  background: var(--vp-surface);
+  border: 1px solid var(--vp-border);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.voice-panel .vp-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--vp-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Phần thu âm */
+.voice-panel .vp-record-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+  background: var(--vp-bg);
+  border: 1px dashed var(--vp-border);
+  border-radius: 0.375rem;
+}
+
+.voice-panel .vp-timer-display {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--vp-text);
+  letter-spacing: 0.05em;
+}
+
+.voice-panel .vp-record-btn-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Nút bấm chính */
+.voice-panel .vp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.voice-panel .vp-btn:focus-visible {
+  outline: 2px solid var(--vp-border-focus);
+  outline-offset: 2px;
+}
+
+.voice-panel .vp-btn-primary {
+  background-color: var(--vp-primary);
+  color: #ffffff;
+}
+
+.voice-panel .vp-btn-primary:hover:not(:disabled) {
+  background-color: var(--vp-primary-hover);
+}
+
+.voice-panel .vp-btn-primary:active:not(:disabled) {
+  background-color: var(--vp-primary-active);
+}
+
+.voice-panel .vp-btn-danger {
+  background-color: var(--vp-danger);
+  color: #ffffff;
+}
+
+.voice-panel .vp-btn-danger:hover:not(:disabled) {
+  background-color: var(--vp-danger-hover);
+}
+
+.voice-panel .vp-btn-secondary {
+  background-color: #ffffff;
+  color: var(--vp-text);
+  border-color: var(--vp-border);
+}
+
+.voice-panel .vp-btn-secondary:hover:not(:disabled) {
+  background-color: var(--vp-surface-hover);
+}
+
+.voice-panel .vp-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Hiệu ứng nhấp nháy khi đang thu âm */
+.voice-panel .vp-recording-pulse {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--vp-danger);
+  border-radius: 50%;
+  animation: vp-pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes vp-pulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* Phần Upload File */
+.voice-panel .vp-upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 1rem;
+  border: 2px dashed var(--vp-border);
+  border-radius: 0.375rem;
+  background: var(--vp-bg);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.voice-panel .vp-upload-zone:hover {
+  border-color: var(--vp-primary-hover);
+}
+
+.voice-panel .vp-upload-input {
+  display: none;
+}
+
+.voice-panel .vp-file-info {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--vp-text);
+  background: var(--vp-surface);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--vp-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Xem trước âm thanh (Audio Preview) */
+.voice-panel .vp-audio-preview {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.voice-panel .vp-audio-preview audio {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Phần Transcript */
+.voice-panel .vp-transcript-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.voice-panel .vp-textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 0.75rem;
+  border: 1px solid var(--vp-border);
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--vp-text);
+  background: #ffffff;
+  resize: vertical;
+  transition: border-color 0.15s ease;
+  font-family: inherit;
+}
+
+.voice-panel .vp-textarea:focus {
+  border-color: var(--vp-border-focus);
+  outline: none;
+  box-shadow: 0 0 0 1px var(--vp-border-focus);
+}
+
+.voice-panel .vp-char-counter {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--vp-text-muted);
+}
+
+.voice-panel .vp-char-counter.vp-counter-exceeded {
+  color: var(--vp-danger);
+  font-weight: 600;
+}
+
+/* Thông báo Mock độc lập */
+.voice-panel .vp-mock-notice {
+  background: var(--vp-mock-bg);
+  border: 1px solid var(--vp-mock-border);
+  color: var(--vp-mock-text);
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Phần Kết quả Dịch */
+.voice-panel .vp-result-box {
+  background: #ffffff;
+  border: 1px solid var(--vp-border);
+  border-radius: 0.375rem;
+  padding: 1rem;
+  min-height: 90px;
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.voice-panel .vp-result-placeholder {
+  color: var(--vp-text-muted);
+  font-style: italic;
+}
+
+/* Hộp Lỗi */
+.voice-panel .vp-error-box {
+  background: var(--vp-danger-bg);
+  border: 1px solid var(--vp-danger-border);
+  color: var(--vp-danger);
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.voice-panel .vp-error-code {
+  font-size: 0.75rem;
+  font-family: monospace;
+  opacity: 0.85;
+}
+
+/* Metadata Bar trong kết quả */
+.voice-panel .vp-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--vp-text-muted);
+  gap: 0.5rem;
+}
+
+/* Spinner quay khi xử lý */
+.voice-panel .vp-spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: vp-spin 0.8s linear infinite;
+}
+
+.voice-panel .vp-btn-secondary .vp-spinner {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-top-color: var(--vp-primary);
+}
+
+@keyframes vp-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Tối ưu hóa hiển thị trên thiết bị di động Mobile */
+@media (max-width: 640px) {
+  .voice-panel {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .voice-panel .vp-warning-banner {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .voice-panel .vp-status-bar {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .voice-panel .vp-card {
+    padding: 1rem 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Phản hồi sao chép thành công */
+.voice-panel .vp-copied-toast {
+  color: var(--vp-success-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+/* Responsive màn hình nhỏ */
+@media (max-width: 640px) {
+  .voice-panel {
+    padding: 1rem;
+  }
+  .voice-panel .vp-status-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .voice-panel .vp-record-btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .voice-panel .vp-btn {
+    width: 100%;
+  }
+}
