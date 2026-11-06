@@ -1,10 +1,12 @@
 # Đặc tả kỹ thuật và kế hoạch triển khai web demo
 
-**Nhánh:** `feat/web-demo` · **Mã việc:** T05, T19, T20, T21, T22 · **Cập nhật:** 02/11/2026.
+**Nhánh:** `feat/web-demo` · **Mã việc:** T05, T19, T20, T21, T22 · **Cập nhật:** 06/11/2026.
 
-**Trạng thái: bản thiết kế đã chỉnh sau review, chưa triển khai ứng dụng.** Tại thời điểm rà soát, repo chưa có `src/web_app/`, bộ kiểm thử web, các file requirements web hoặc checkpoint. Cây thư mục, API, cấu hình và lệnh dưới đây là đầu ra cần xây dựng; các ví dụ mock không phải kết quả dịch, ASR hoặc thực nghiệm thật.
+**Trạng thái: Đã review đạt phạm vi backend, giao diện và luồng giọng nói với engine mock ngày 06/11/2026.** Đã có mã tại `src/web_app/` cùng các bộ kiểm thử unit, HTTP, trình duyệt Orca và hồi quy helper PNG; Codex đã đối chiếu mã/log, mở ảnh mobile/giọng nói và đóng các phát hiện C01–C24. Xem bằng chứng và việc còn lại tại [báo cáo web-demo](../.agents/reports/web-demo.md), lệnh tái hiện tại [README](../README.md#4-chạy-kiểm-thử-tự-động). Chưa tích hợp checkpoint ML thật, chưa xác minh micro vật lý, ASR thật tiếng Việt hoặc cài mới trong môi trường sạch; hệ thống không hỗ trợ nhận dạng tiếng Tày. Kết quả mock chỉ kiểm chứng luồng tương tác và giao tiếp trong phạm vi đã thử, chưa đóng nghiệm thu các Txx toàn dự án.
 
 Phạm vi và D01–D04 theo [PROJECT_CONTEXT.md](../PROJECT_CONTEXT.md); nghiệm thu theo [PROJECT_REQUIREMENTS.md](../PROJECT_REQUIREMENTS.md); phụ thuộc và lịch theo [TASKS.md](../TASKS.md). Giao tiếp liên nhóm được ghi tại [ARCHITECTURE.md](../ARCHITECTURE.md#ứng-dụng-minh-họa). Bằng chứng triển khai/review cập nhật trong [báo cáo web-demo](../.agents/reports/web-demo.md).
+
+**Việc để sau:** Theo [quyết định ngày 06/11/2026](../PROJECT_CONTEXT.md#thứ-tự-tích-hợp-mô-hình-vào-web--06112026), chỉ tiếp tục phần adapter/checkpoint sau khi nhánh `feat/translation-pipeline` hoàn tất và có đầu ra bàn giao đủ điều kiện. Đợt hiện tại chốt phạm vi mock.
 
 **Bắt đầu triển khai:** xem [§8.4 — Thứ tự thực hiện và đợt đầu tiên](#84-thứ-tự-thực-hiện-và-đợt-đầu-tiên). Đoạn giao việc có thể đưa cho Claude Code nằm tại [§8.5](#85-nội-dung-giao-việc-cho-claude-code). Tiến độ thực tế vẫn ghi trong báo cáo nhóm; các mục này không phải xác nhận đã triển khai.
 
@@ -432,7 +434,7 @@ Bước rà soát transcript giúp giảm lỗi lan truyền, không bảo đả
 
 Nhóm pipeline cung cấp adapter suy luận dùng chung với đánh giá, artifact và bằng chứng chọn checkpoint theo validation. Nhóm web viết lớp nối, quản lý vòng đời, request/response và giao diện. Ghi phiên bản hợp đồng và xác nhận liên nhóm tại `ARCHITECTURE.md` trước khi tích hợp; bản này là đề xuất để phối hợp, không tự xác nhận pipeline đã cung cấp adapter.
 
-Có thể tích hợp baseline sau T11/T12 để nghiệm thu T19/T20. T22 nhận bundle cuối theo T16/T17 và bằng chứng validation; không chờ tới T22 mới thử giao tiếp. D01 quyết định họ mô hình, một hay hai checkpoint và hình thức fine-tune. Không yêu cầu pipeline xuất một tên weights/tokenizer cụ thể khi chưa chốt phương án.
+Theo quyết định điều phối hiện hành, việc triển khai adapter/checkpoint được để sau khi `feat/translation-pipeline` hoàn tất. T11/T12 vẫn là phụ thuộc nghiệm thu T19/T20; T22 cần bundle cuối theo T16/T17 và bằng chứng validation. D01 quyết định họ mô hình, một hay hai checkpoint và hình thức fine-tune. Không yêu cầu pipeline xuất một tên weights/tokenizer cụ thể khi chưa chốt phương án.
 
 ### 7.2 Bundle và metadata bắt buộc
 
@@ -528,7 +530,7 @@ Các đợt dưới đây là mốc bàn giao bên trong nhánh `feat/web-demo`,
 | 1 — T19 với mock | Môi trường web, engine mock, bốn API, validation WAV/văn bản, runner và lỗi | Backend khởi động được; test độc lập và kiểm tra HTTP thực tế đạt; README/báo cáo có lệnh và kết quả |
 | 2 — T20 với mock | Giao diện dịch văn bản nối backend theo §6.1–6.2 | Có bằng chứng thao tác trình duyệt, xử lý lỗi và phản hồi cũ; nhãn mock rõ ràng |
 | 3 — T05 và T21 | Khảo sát ASR thật theo T05; xây luồng thu âm/upload → transcript chỉnh sửa → dịch theo T21 | Bằng chứng nhận dạng riêng và luồng tích hợp; phần nào còn mock phải ghi rõ, chưa nghiệm thu T21 nếu thiếu phụ thuộc thật |
-| 4 — Tích hợp thật, T22 | Thay mock bằng adapter/bundle pipeline; kiểm tra offline và đóng gói | T19/T20 có thể tích hợp baseline ngay sau T11/T12; T22 cần bundle cuối chọn bằng validation sau T16/T17 và đủ điều kiện §8.1 |
+| 4 — Tích hợp thật, T22 | Thay mock bằng adapter/bundle pipeline; kiểm tra offline và đóng gói | Để sau khi nhánh `feat/translation-pipeline` hoàn tất; T19/T20 vẫn cần T11/T12, T22 cần bundle cuối chọn bằng validation sau T16/T17 và đủ điều kiện §8.1 |
 
 **Trước khi viết mã đợt 1:**
 

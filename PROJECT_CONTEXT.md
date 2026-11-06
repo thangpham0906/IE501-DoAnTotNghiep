@@ -53,6 +53,12 @@ Theo yêu cầu sửa [đặc tả web demo](docs/SPECS_WEB_DEMO.md), nhánh web
 
 D01 và D04 giữ trạng thái còn mở. Web nhận adapter/bundle từ pipeline, không chốt thay họ mô hình, token Tày hoặc số checkpoint cho hai chiều. Nghiệm thu mô hình/ASR thật vẫn cần bằng chứng theo T05, T11/T12 và T19–T22; việc hoàn thiện đặc tả không thay thế các mốc này.
 
+### Thứ tự tích hợp mô hình vào web — 06/11/2026
+
+Theo yêu cầu người dùng, **để phần adapter/checkpoint làm sau khi nhánh `feat/translation-pipeline` hoàn tất**. Nhánh `feat/web-demo` hiện bàn giao phạm vi mock đã review; chưa triển khai hoặc bật suy luận bằng mô hình thật trong đợt này. Quyết định này thay lịch tích hợp sớm ngay khi có baseline T11/T12 trong kế hoạch web trước đó.
+
+Điều kiện tiếp tục là nhóm pipeline xác nhận hoàn tất bằng báo cáo/commit và bàn giao adapter cùng bundle đủ điều kiện theo [hợp đồng kiến trúc](ARCHITECTURE.md#ứng-dụng-minh-họa) và [đặc tả §7](docs/SPECS_WEB_DEMO.md#7-hợp-đồng-bàn-giao-với-pipeline). Sau đó mới đối chiếu tương thích và chạy kiểm thử tích hợp thật; nhánh hoàn tất không tự thay thế kiểm tra checkpoint/tokenizer hoặc bằng chứng chọn mô hình. Các T19–T22 chưa được nghiệm thu toàn diện chỉ vì phần mock đạt.
+
 ## Thời gian thực hiện
 
 Khung thời gian sử dụng cho dự án: **05/11/2026–17/01/2027**, được người dùng thống nhất ngày **01/11/2026**. Kế hoạch gồm **11 tuần công việc**: 10 tuần đủ 7 ngày và tuần cuối từ 14–17/01/2027 (4 ngày), không phải 11 tuần trọn vẹn.

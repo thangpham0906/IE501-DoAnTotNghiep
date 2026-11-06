@@ -168,6 +168,20 @@ Hợp đồng dưới đây phục vụ phối hợp T06/T11/T19 và cần đư�
 
 Chiều `vi-tay` ánh xạ `vi` → `tyz`, `tay-vi` ánh xạ ngược lại ở tầng API. Token/ngôn ngữ của mô hình lấy từ cấu hình pipeline đã kiểm chứng, không mặc định một token Tày. Pipeline sở hữu loader, tokenizer và generation dùng chung; web nối qua `InferenceEngine` và quản lý runner hữu hạn. Một bundle có thể chứa một model hai chiều hoặc hai model theo chiều tùy D01; `model_id` không đồng nghĩa chỉ có một checkpoint.
 
-Bundle thật cần manifest có phiên bản schema, định danh model/tokenizer, checksum, cấu hình ngôn ngữ/giải mã và ánh xạ theo chiều. Thiếu hoặc sai trường bắt buộc thì engine không ready; không lấy tên thư mục hoặc điểm mặc định để thay metadata. Bằng chứng chọn checkpoint bằng validation là điều kiện bàn giao T22. T19/T20 có thể tích hợp baseline sau T11/T12.
+Bundle thật cần manifest có phiên bản schema, định danh model/tokenizer, checksum, cấu hình ngôn ngữ/giải mã và ánh xạ theo chiều. Thiếu hoặc sai trường bắt buộc thì engine không ready; không lấy tên thư mục hoặc điểm mặc định để thay metadata. Bằng chứng chọn checkpoint bằng validation là điều kiện bàn giao T22. Thời điểm triển khai adapter/checkpoint tuân theo [quyết định điều phối ngày 06/11/2026](PROJECT_CONTEXT.md#thứ-tự-tích-hợp-mô-hình-vào-web--06112026): làm sau khi nhánh `feat/translation-pipeline` hoàn tất.
 
 Chỉ bật chiều dịch/ngôn ngữ âm thanh đã kiểm chứng. Backend cần xử lý đầu vào rỗng, chiều không hỗ trợ, quá giới hạn, mô hình chưa sẵn sàng và lỗi suy luận; giới hạn cụ thể dựa trên thử nghiệm tài nguyên.
+
+### Phân tách frontend để triển khai song song — 03/11/2026
+
+Giao diện dùng ES modules tại `src/web_app/ui/js/`; hành vi và tiêu chí nghiệm thu theo đặc tả §6, §8.2. Các giao tiếp nội bộ sau được thống nhất trước khi giao Claude Code triển khai T20 và phần luồng mock của T21:
+
+| Thành phần | Giao tiếp / trách nhiệm |
+| --- | --- |
+| `api_client.js` | Xuất `apiRequest(path, {method, json, formData, signal, timeoutMs})`, trả dữ liệu JSON hoặc ném lỗi có `code`, `message`, `requestId`, `detail`; hủy chủ động dùng `AbortError`. Xuất `timeoutFor(health, kind, bufferMs=5000)`, với `kind` là `translation` hoặc `asr`; tính từ hạn chờ + hạn chạy + khoảng đệm dương. Không tự gửi lại yêu cầu |
+| `text_utils.js` | Xuất `normalizeText(text)` theo đúng tập Unicode White_Space và NFC của backend; `codePointLength(text)` đếm code point. Cả dịch văn bản và transcript dùng chung |
+| `app.js` / `translation.js` | Quản lý tab, health/models và luồng dịch văn bản. Tạo vùng `#voice-panel`, gọi `initVoice(root, {apiRequest, timeoutFor, normalizeText, codePointLength})`; chuyển health qua `setHealth(health)`, gọi `deactivate()` khi rời tab và `destroy()` khi rời trang |
+| `voice.js` | Xuất `initVoice` trả `{setHealth, deactivate, destroy}`; tự tạo và quản lý giao diện trong root. Sở hữu revision/hủy yêu cầu ASR và dịch transcript; không tự dịch sau ASR. CSS riêng `css/voice.css` tránh ghi đè file đang được agent giao diện sửa |
+| `audio.js` / `pcm-worklet.js` | Thu PCM theo sample rate thật, giới hạn thời lượng, trộn mono, resample và mã hóa WAV. Không gán nhãn nhận dạng thật cho âm thanh/test tổng hợp |
+
+Đây là giao tiếp triển khai, chưa phải bằng chứng tính năng đã chạy. Trạng thái và kiểm tra thực tế nằm trong [báo cáo web-demo](.agents/reports/web-demo.md).
