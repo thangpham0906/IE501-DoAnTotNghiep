@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hệ thống dịch máy tăng cường dữ liệu và ứng dụng dịch song ngữ Việt - Tày kèm thử nghiệm nhận dạng giọng nói."
+    />
+    <title>Dịch máy Việt - Tày & Thử nghiệm Giọng nói</title>
+
+    <!-- Toàn bộ CSS nội bộ không sử dụng CDN theo đặc tả §6.1 -->
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/voice.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header ứng dụng -->
+      <header class="app-header">
+        <div class="header-top">
+          <div class="app-title-group">
+            <h1>Dịch máy Việt - Tày</h1>
+            <p class="app-subtitle">
+              Ứng dụng dịch văn bản hai chiều và thử nghiệm nhận dạng giọng nói tiếng Việt
+            </p>
+          </div>
+
+          <!-- Thanh thông tin trạng thái Engine máy chủ -->
+          <div class="header-status-bar" aria-label="Trạng thái hệ thống">
+            <span
+              id="engine-status-translation"
+              class="badge badge--loading"
+              title="Trạng thái engine dịch"
+            >
+              Dịch: Đang kiểm tra...
+            </span>
+            <span id="engine-status-asr" class="badge badge--loading" title="Trạng thái engine ASR">
+              ASR: Đang kiểm tra...
+            </span>
+            <span
+              id="global-mock-badge"
+              class="badge badge--mock hidden"
+              title="Hệ thống đang chạy chế độ mô phỏng kiểm thử"
+            >
+              MÔ PHỎNG
+            </span>
+            <button
+              type="button"
+              id="btn-refresh-status"
+              class="btn-refresh"
+              title="Kiểm tra lại trạng thái máy chủ"
+              aria-label="Làm mới trạng thái hệ thống"
+            >
+              ⟳ Làm mới
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Điều hướng 2 Tab: Văn bản và Giọng nói -->
+      <nav class="tab-navigation" role="tablist" aria-label="Chế độ làm việc">
+        <button
+          type="button"
+          role="tab"
+          id="tab-text"
+          class="tab-btn active"
+          aria-selected="true"
+          aria-controls="panel-text"
+        >
+          📝 Văn bản
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="tab-voice"
+          class="tab-btn"
+          aria-selected="false"
+          aria-controls="voice-panel"
+        >
+          🎙️ Giọng nói
+        </button>
+      </nav>
+
+      <!-- Banner hiển thị lỗi chung phía client / API -->
+      <div
+        id="error-banner"
+        class="error-banner hidden"
+        role="alert"
+        aria-live="assertive"
+      ></div>
+
+      <!-- TAB 1: DỊCH VĂN BẢN HAI CHIỀU (§6.2) -->
+      <main id="panel-text" role="tabpanel" aria-labelledby="tab-text">
+        <!-- Thanh công cụ dịch: chọn chiều, nút đảo chiều Swap, thông tin mô hình -->
+        <section class="translation-toolbar" aria-label="Điều khiển dịch">
+          <div class="direction-control-group">
+            <label for="direction-select" style="font-size: 0.875rem; font-weight: 600;">
+              Chiều dịch:
+            </label>
+            <select
+              id="direction-select"
+              class="form-select"
+              aria-label="Chọn chiều dịch văn bản"
+            >
+              <option value="vi-tay">Tiếng Việt → Tiếng Tày (vi-tay)</option>
+              <option value="tay-vi">Tiếng Tày → Tiếng Việt (tay-vi)</option>
+            </select>
+
+            <button
+              type="button"
+              id="btn-swap"
+              class="btn-swap"
+              title="Đảo chiều dịch (Swap)"
+              aria-label="Đảo chiều dịch văn bản"
+            >
+              ⇄
+            </button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span
+              id="active-model-badge"
+              class="badge badge--model"
+              title="Mô hình dịch đang phục vụ"
+            >
+              Đang tải thông tin mô hình...
+            </span>
+          </div>
+        </section>
+
+        <!-- Lưới 2 cột: Ô nguồn và Ô đích -->
+        <div class="translation-grid">
+          <!-- Cột nguồn -->
+          <div class="text-box">
+            <div class="box-header">
+              <label id="source-label" for="source-text" class="box-title">Tiếng Việt</label>
+              <div class="box-actions">
+                <button
+                  type="button"
+                  id="btn-clear-source"
+                  class="btn btn-clear"
+                  title="Xóa nội dung nguồn"
+                  aria-label="Xóa văn bản nguồn"
+                >
+                  ✕ Xóa
+                </button>
+              </div>
+            </div>
+
+            <textarea
+              id="source-text"
+              class="text-input"
+              rows="8"
+              placeholder="Nhập văn bản tiếng Việt cần dịch..."
+              spellcheck="false"
+              aria-describedby="char-count"
+            ></textarea>
+
+            <div class="box-footer">
+              <span>Đếm ký tự Unicode (NFC):</span>
+              <div id="char-count" class="char-count" aria-live="polite">
+                0 / 1000 ký tự
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột kết quả dịch -->
+          <div class="text-box">
+            <div class="box-header">
+              <label id="target-label" for="target-text" class="box-title">Tiếng Tày</label>
+              <div class="box-actions">
+                <span
+                  id="copy-feedback"
+                  class="copy-feedback"
+                  role="status"
+                  aria-live="polite"
+                ></span>
+                <button
+                  type="button"
+                  id="btn-copy-target"
+                  class="btn btn-secondary"
+                  style="padding: 0.25rem 0.6rem; font-size: 0.75rem;"
+                  title="Sao chép kết quả dịch"
+                  aria-label="Sao chép kết quả dịch vào bộ nhớ tạm"
+                >
+                  📋 Sao chép
+                </button>
+              </div>
+            </div>
+
+            <textarea
+              id="target-text"
+              class="text-input text-output"
+              rows="8"
+              readonly
+              placeholder="Bản dịch sẽ hiển thị tại đây..."
+              aria-live="polite"
+            ></textarea>
+
+            <div class="box-footer">
+              <span>Kết quả dịch tự động</span>
+              <span>Giữ phím Ctrl+Enter để dịch nhanh</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hàng nút hành động -->
+        <div class="action-row">
+          <button
+            type="button"
+            id="btn-translate"
+            class="btn btn-primary btn-translate"
+            disabled
+          >
+            Dịch văn bản
+          </button>
+
+          <div class="status-indicator">
+            <div id="translate-spinner" class="spinner hidden" aria-hidden="true"></div>
+            <span
+              id="translate-status-text"
+              class="status-text"
+              role="status"
+              aria-live="polite"
+            ></span>
+          </div>
+        </div>
+
+        <!-- Thẻ hiển thị Metadata, Timing và Nhãn mô phỏng -->
+        <section
+          id="meta-container"
+          class="meta-card hidden"
+          aria-label="Thông tin kỹ thuật bản dịch"
+        >
+          <div class="meta-details">
+            <span
+              id="meta-mock-badge"
+              class="badge badge--mock hidden"
+              role="status"
+            >
+              MÔ PHỎNG
+            </span>
+            <span class="meta-item">
+              <strong>Mô hình:</strong>
+              <span id="meta-model-info">-</span>
+            </span>
+            <span class="meta-item">
+              <strong>Thời gian:</strong>
+              <span id="meta-timing">-</span>
+            </span>
+          </div>
+        </section>
+      </main>
+
+      <!-- TAB 2: THỬ NGHIỆM GIỌNG NÓI (§6.3) -->
+      <!-- Task B sẽ khởi tạo nội dung bên trong vùng #voice-panel -->
+      <section
+        id="voice-panel"
+        class="voice-panel"
+        role="tabpanel"
+        aria-labelledby="tab-voice"
+        hidden
+      ></section>
+
+      <!-- Footer ứng dụng -->
+      <footer class="app-footer">
+        <p>
+          Đồ án tốt nghiệp: Nghiên cứu phương pháp dịch máy tăng cường dữ liệu và ứng dụng dịch song ngữ Việt - Tày.
+        </p>
+      </footer>
+    </div>
+
+    <!-- Script khởi chạy ứng dụng -->
+    <script type="module" src="/js/app.js"></script>
+  </body>
+</html>
