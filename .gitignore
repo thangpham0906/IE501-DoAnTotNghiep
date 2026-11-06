@@ -13,6 +13,23 @@ venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+*.log
 .env
 .env.*
 !.env.example
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
+
+# Temporary audio files
+*.wav
+!src/tests/fixtures/**/*.wav
