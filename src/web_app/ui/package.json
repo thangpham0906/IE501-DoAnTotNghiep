@@ -1,0 +1,10 @@
+{
+  "name": "web-demo-ui",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test ../../tests/web_ui/*.test.mjs",
+    "test:unit": "node --test ../../tests/web_ui/api_client.test.mjs ../../tests/web_ui/text_utils.test.mjs ../../tests/web_ui/translation.test.mjs"
+  }
+}
