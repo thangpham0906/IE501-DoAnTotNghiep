@@ -148,12 +148,12 @@ python3 src/data_pipeline/clean_dedup.py \
 
 ## 9. Bước 7 — Chia train/validation/test sau kiểm duyệt
 
-Chưa chạy trên corpus chính thức. Công cụ `split_dataset.py` đã được kiểm thử bằng fixture:
+Chưa chạy trên corpus chính thức. Công cụ `split_dataset.py` đã được kiểm thử và tăng cường hoàn chỉnh:
 
 - Kiểm tra checksum và số lượng đầu vào với manifest làm sạch thành công.
-- Gom các bản ghi thành nhóm liên thông nếu chung tài liệu, chung câu Tày hoặc chung câu Việt sau chuẩn hóa. Những câu nối nhau qua nhiều điều kiện cũng ở cùng nhóm.
+- Gom các bản ghi thành nhóm liên thông: liên kết tài liệu nguồn (`source_documents`), trùng chính xác từng phía và **gần trùng (near-duplicate) cả 2 phía ngôn ngữ** (ngưỡng Jaccard từ vựng và 3-gram ký tự >= 0.85). Các câu có độ tương đồng cấu trúc cao bắt buộc phải nằm chung trong cùng một phân vùng.
 - Chia nhóm bằng seed 42 và tỷ lệ dự kiến 80/10/10; luôn cần ít nhất ba nhóm độc lập. Tỷ lệ theo số câu có thể lệch vì kích thước nhóm khác nhau.
-- Không đưa một tài liệu hoặc câu trùng chính xác ở cùng phía vào nhiều tập. Kiểm tra gần trùng và xác minh ID tài liệu vẫn cần thực hiện bổ sung trước khi đóng băng tập chính thức.
+- **Xác minh không rò rỉ (Zero-Leakage Verification - Q02)**: Trước khi ghi tệp, script tự động quét đối chiếu chéo giữa 3 tập `train_e0`, `val`, `test` để khẳng định 0 ID tài liệu trùng, 0 câu trùng chính xác và 0 câu gần trùng; nếu phát hiện vi phạm lập tức hủy tiến trình.
 
 Ví dụ **chỉ chạy sau khi làm sạch có đầu ra hợp lệ**:
 

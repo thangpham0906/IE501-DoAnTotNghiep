@@ -66,6 +66,10 @@ def process_all_raw_data(raw_dir: Path, output_path: Path, registry_path: Path,
     unique = {}
     decisions = []
     approved_count = 0
+    tay_to_vis = {}
+    vi_to_tays = {}
+    one_sided_duplicates = {"identical_tay_different_vi": 0, "identical_vi_different_tay": 0}
+
     for source, path, rows, selected in loaded:
         accepted = 0
         for number, row in enumerate(rows, 1):
@@ -86,16 +90,32 @@ def process_all_raw_data(raw_dir: Path, output_path: Path, registry_path: Path,
             if url:
                 documents.append(f'url:{url}')
             reference = {'path': source['path'], 'sha256': source['sha256'], 'record_number': number}
+            existing_refs = row.get('source_records', [])
+            if not isinstance(existing_refs, list):
+                existing_refs = []
             fingerprint = get_hash(tay, vi)
+
+            # Theo dõi một phía trùng lặp
+            norm_tay = tay.casefold()
+            norm_vi = vi.casefold()
+            if norm_tay in tay_to_vis and norm_vi not in tay_to_vis[norm_tay]:
+                one_sided_duplicates["identical_tay_different_vi"] += 1
+            tay_to_vis.setdefault(norm_tay, set()).add(norm_vi)
+
+            if norm_vi in vi_to_tays and norm_tay not in vi_to_tays[norm_vi]:
+                one_sided_duplicates["identical_vi_different_tay"] += 1
+            vi_to_tays.setdefault(norm_vi, set()).add(norm_tay)
+
             if fingerprint in unique:
                 unique[fingerprint]['source_records'].append(reference)
                 unique[fingerprint]['source_documents'] = sorted(set(
                     unique[fingerprint]['source_documents'] + documents))
             else:
+                combined_refs = [reference] + [r for r in existing_refs if r != reference]
                 unique[fingerprint] = {
                     **row, 'tay': tay, 'vi': vi, 'tay_text': tay, 'vi_text': vi,
                     'hash': fingerprint, 'source_documents': sorted(documents),
-                    'source_records': [reference], 'training_approved': True,
+                    'source_records': combined_refs, 'training_approved': True,
                 }
             accepted += 1
         approved_count += accepted
@@ -112,6 +132,7 @@ def process_all_raw_data(raw_dir: Path, output_path: Path, registry_path: Path,
                         approved_records=approved_count, kept_pairs=len(rows),
                         duplicate_approved_pairs=approved_count-len(rows),
                         source_decisions=decisions,
+                        one_sided_duplicates=one_sided_duplicates,
                         normalization='NFC and collapsed whitespace; dedup on casefolded pair')
     write_json(report_path, report)
     return report
