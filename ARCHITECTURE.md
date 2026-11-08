@@ -139,16 +139,16 @@ Lần tái hiện hiện có: `data/interim/replay-2026-11-01/` chứa bản ki�
 
 JSONL dự kiến dùng cho dữ liệu theo bản ghi; JSON dùng cho manifest và kết quả máy đọc. Khi chốt schema, bổ sung kiểm tra trường bắt buộc và khả năng truy ngược từ kết quả tới nguồn dữ liệu.
 
-## Ứng dụng minh họa
+## Ứng dụng minh họa và Hợp đồng Giao tiếp Suy luận
 
 ```mermaid
 flowchart LR
     U[Giao diện web] --> API[Backend API]
     API --> TXT[Kiểm tra văn bản và chiều dịch]
-    TXT --> MT[Dịch bằng checkpoint đã chọn]
+    TXT --> MT[Dịch bằng Inference Adapter]
     API --> ASR[Nhận dạng âm thanh]
     ASR --> TXT
-    MT --> R[Bản dịch và thông tin mô hình]
+    MT --> R[TranslationResult]
     ASR --> TR[Văn bản nhận dạng]
     R --> U
     TR --> U
@@ -156,6 +156,49 @@ flowchart LR
 
 React, FastAPI, PyTorch và Whisper là các công nghệ được nêu trong đề cương; phiên bản và cấu hình triển khai chưa chốt. Backend gọi thành phần suy luận dùng chung với đánh giá, không huấn luyện mô hình trong yêu cầu dịch.
 
-Giao tiếp dịch văn bản dự kiến nhận văn bản, ngôn ngữ nguồn và đích; trả bản dịch, chiều dịch và phiên bản mô hình. Giao tiếp giọng nói trả thêm văn bản nhận dạng để người dùng kiểm tra. Tên endpoint và schema API sẽ được xác định khi triển khai.
+### Hợp đồng Giao tiếp Suy luận (Inference Adapter Contract)
 
-Chỉ bật chiều dịch/ngôn ngữ âm thanh đã kiểm chứng. Backend cần xử lý đầu vào rỗng, chiều không hỗ trợ, quá giới hạn, mô hình chưa sẵn sàng và lỗi suy luận; giới hạn cụ thể dựa trên thử nghiệm tài nguyên.
+Nhánh `translation-pipeline` cung cấp bộ điều hợp suy luận `TranslationInferenceAdapter` (alias `InferenceAdapter`) và `MockTranslator` tại `src/models/inference_adapter.py` để nhánh `feat/web-demo` và bộ đánh giá tích hợp:
+
+1. **Khởi tạo và Chế độ hoạt động:**
+   ```python
+   from src.models import TranslationInferenceAdapter, Direction, TranslationResult
+
+   # Chế độ Mock phục vụ kiểm thử và demo khi chưa có checkpoint thật:
+   engine = TranslationInferenceAdapter(mock_mode=True)
+
+   # Chế độ Real nạp trọng số checkpoint thật (yêu cầu thư mục checkpoint hợp lệ):
+   engine = TranslationInferenceAdapter(
+       checkpoint_dir="models/checkpoints/checkpoint-best-E0",
+       mock_mode=False,
+   )
+   ```
+
+2. **Giao diện gọi dịch (Calling Conventions):**
+   - Đơn câu: `engine.translate(text: str, direction: str | Direction = "vi-tyz") -> TranslationResult`
+   - Đa câu (Batch): `engine.translate_batch(texts: list[str], direction: str | Direction = "vi-tyz") -> list[TranslationResult]`
+   - Caller trong web-demo: `engine.translate(normalized_text, payload.direction)`
+
+3. **Quy chuẩn Chiều dịch (Direction Aliases):**
+   Bộ điều hợp tự động chuẩn hóa các biến thể chuỗi chiều dịch qua `Direction.normalize`:
+   - Việt → Tày: `"vi-tyz"`, `"vi_to_tay"`, `"vi-tay"`, `"vi->ty"`, `Direction.VI_TO_TAY`
+   - Tày → Việt: `"tyz-vi"`, `"tay_to_vi"`, `"tay-vi"`, `"ty->vi"`, `Direction.TAY_TO_VI`
+
+4. **Cấu trúc Kết quả Trả về (`TranslationResult`):**
+   | Trường | Kiểu dữ liệu | Ý nghĩa |
+   | :--- | :--- | :--- |
+   | `src_text` | `str` | Câu nguồn đã chuẩn hóa NFC và khoảng trắng |
+   | `tgt_text` | `str` | Câu dịch đầu ra |
+   | `direction` | `str` | Chiều dịch chuẩn hóa (`"vi-tyz"` hoặc `"tyz-vi"`) |
+   | `model_version` | `str` | Tên/phiên bản checkpoint (e.g. `"mock-seq2seq-v1"` hoặc tên run) |
+   | `latency_ms` | `float` | Thời gian xử lý suy luận tính bằng mili giây |
+   | `status` | `str` | Trạng thái suy luận: `"ready"`, `"mock_mode"`, hoặc `"error"` |
+   | `error_message` | `str | None` | Thông báo lỗi chi tiết nếu có |
+
+   Hỗ trợ cả truy cập thuộc tính (`res.tgt_text`), truy cập dạng từ điển (`res["tgt_text"]`), `res.get("tgt_text")`, và tuần tự hóa `res.to_dict()`.
+
+5. **Xử lý Ngoại lệ (Exceptions):**
+   - `EmptyInputError`: Ném ra khi chuỗi đầu vào rỗng hoặc chỉ có khoảng trắng.
+   - `TextTooLongError`: Ném ra khi chuỗi vượt quá độ dài tối đa cho phép (mặc định 2000 ký tự).
+   - `InvalidDirectionError`: Ném ra khi chiều dịch không hợp lệ.
+   - `ModelNotReadyError`: Ném ra khi gọi dịch lúc mô hình chưa khởi tạo thành công.

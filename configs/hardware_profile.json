@@ -1,0 +1,128 @@
+{
+  "timestamp_utc": "2026-11-02T12:06:49Z",
+  "host_specs": {
+    "os_system": "Linux",
+    "os_release": "6.18.54.1-microsoft-standard-WSL2",
+    "python_version": "3.12.3",
+    "cpu_model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+    "cpu_cores_logical": 12,
+    "cpu_cores_physical": 6,
+    "ram_total_gb": 11.68,
+    "ram_available_gb": 8.57,
+    "disk_free_gb": 845.37,
+    "gpu_name": "NVIDIA GeForce GTX 1050 Ti",
+    "gpu_vram_total_gb": 4.0,
+    "gpu_compute_capability": "sm_61",
+    "cuda_driver_version": "13.0",
+    "pytorch_cuda_available": true,
+    "pytorch_cuda_arch_list": [
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90",
+      "sm_100",
+      "sm_120"
+    ],
+    "is_gpu_compatible": false,
+    "incompatibility_reason": "Device 'NVIDIA GeForce GTX 1050 Ti' has compute capability sm_61, which is not included in current PyTorch build arch list: ['sm_75', 'sm_80', 'sm_86', 'sm_90', 'sm_100', 'sm_120']."
+  },
+  "execution_strategy": {
+    "device": "cpu",
+    "batch_size": 8,
+    "gradient_accumulation_steps": 2,
+    "strategy_name": "CPU Multi-threaded Optimized",
+    "reason": "GPU lacks sm_61 kernel or has insufficient VRAM (<6GB) for full AdamW optimizer states. Utilizing host CPU with 8.57 GB RAM headroom and effective batch size 16."
+  },
+  "benchmark_metrics": {
+    "tokens_per_second": 237037.88,
+    "samples_per_second": 8439.5,
+    "estimated_step_latency_ms": 0.95
+  },
+  "experiment_budgets": [
+    {
+      "experiment_name": "E0",
+      "description": "Baseline bilingual verified",
+      "sample_count": 200,
+      "batch_size": 8,
+      "epochs": 5,
+      "total_steps": 65,
+      "estimated_ms_per_step": 2.85,
+      "estimated_minutes": 0.0,
+      "steps_per_hour": 1263157.9,
+      "device": "cpu",
+      "strategy": "CPU Multi-threaded Optimized"
+    },
+    {
+      "experiment_name": "E1",
+      "description": "E0 + uncurated synthetic (U)",
+      "sample_count": 1200,
+      "batch_size": 8,
+      "epochs": 5,
+      "total_steps": 375,
+      "estimated_ms_per_step": 2.85,
+      "estimated_minutes": 0.02,
+      "steps_per_hour": 1263157.9,
+      "device": "cpu",
+      "strategy": "CPU Multi-threaded Optimized"
+    },
+    {
+      "experiment_name": "E2",
+      "description": "E0 + N curated synthetic (QC 5 rules)",
+      "sample_count": 700,
+      "batch_size": 8,
+      "epochs": 5,
+      "total_steps": 220,
+      "estimated_ms_per_step": 2.85,
+      "estimated_minutes": 0.01,
+      "steps_per_hour": 1263157.9,
+      "device": "cpu",
+      "strategy": "CPU Multi-threaded Optimized"
+    },
+    {
+      "experiment_name": "E1-M",
+      "description": "E0 + N random synthetic (Fair control with E2)",
+      "sample_count": 700,
+      "batch_size": 8,
+      "epochs": 5,
+      "total_steps": 220,
+      "estimated_ms_per_step": 2.85,
+      "estimated_minutes": 0.01,
+      "steps_per_hour": 1263157.9,
+      "device": "cpu",
+      "strategy": "CPU Multi-threaded Optimized"
+    },
+    {
+      "experiment_name": "A1",
+      "description": "Ablation without rule R1 (Length ratio)",
+      "sample_count": 700,
+      "batch_size": 8,
+      "epochs": 5,
+      "total_steps": 220,
+      "estimated_ms_per_step": 2.85,
+      "estimated_minutes": 0.01,
+      "steps_per_hour": 1263157.9,
+      "device": "cpu",
+      "strategy": "CPU Multi-threaded Optimized"
+    },
+    {
+      "experiment_name": "A2",
+      "description": "Ablation without rule R2 (Repetition/TTR)",
+      "sample_count": 700,
+      "batch_size": 8,
+      "epochs": 5,
+      "total_steps": 220,
+      "estimated_ms_per_step": 2.85,
+      "estimated_minutes": 0.01,
+      "steps_per_hour": 1263157.9,
+      "device": "cpu",
+      "strategy": "CPU Multi-threaded Optimized"
+    }
+  ],
+  "recommendations": [
+    "Device selection: Use 'cpu' mode (GPU lacks sm_61 kernel or has insufficient VRAM (<6GB) for full AdamW optimizer states. Utilizing host CPU with 8.57 GB RAM headroom and effective batch size 16.).",
+    "Host CPU has 12 logical threads; recommend setting OMP_NUM_THREADS=6.",
+    "Available system RAM (8.57 GB) provides ample headroom for batch size 8.",
+    "Zero Data Leakage (Q02): Synthetic datasets remain strictly isolated from validation and test sets.",
+    "Benchmark throughput chỉ là micro-benchmark mô phỏng trên CPU cho MockSeq2SeqModel, KHÔNG suy diễn sang thời gian fine-tune NLLB-600M trên GPU."
+  ]
+}
