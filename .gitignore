@@ -8,6 +8,7 @@
 
 # Model artifacts, environments and secrets.
 /models/
+/experiments/
 .venv/
 venv/
 __pycache__/

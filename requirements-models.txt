@@ -1,0 +1,36 @@
+# ==============================================================================
+# IE501 — Vietnamese-Tay Machine Translation Pipeline Dependencies
+# ==============================================================================
+# Phục vụ huấn luyện mô hình, tăng cường dữ liệu và đánh giá thực nghiệm (T02–T18).
+#
+# LƯU Ý MÔI TRƯỜNG & PHẦN CỨNG (AUDIT ĐO ĐẠC THỰC TẾ):
+# 1. Máy cục bộ hiện tại (Host: i7-9750H, 11GB RAM, GTX 1050 Ti 4GB VRAM Compute Capability 6.1):
+#    - Đang sử dụng torch==2.13.0+cu130 (chạy trên CPU do kernel cu130 yêu cầu CC >= 7.5).
+#    - Các lệnh kiểm thử unit test, mock dry-run và đánh giá metric chạy hoàn toàn trên CPU.
+# 2. Quyết định kiến trúc mô hình (D01):
+#    - Chưa chốt cố định NLLB-200-distilled-600M; các phương án kiến trúc gồm Transformer chuẩn,
+#      mBART, NLLB-200 và PhoMT đang được khảo sát theo đề cương.
+#    - Về giới hạn VRAM: Mô hình 600M tham số ở FP16 chiếm ~1.2GB (FP32 chiếm ~2.4GB), HOÀN TOÀN
+#      có thể nạp vào 4GB VRAM để suy luận hoặc áp dụng kỹ thuật LoRA/PEFT.
+#      Giới hạn 4GB VRAM là đối với trạng thái bộ nhớ của trình tối ưu AdamW đầy đủ khi fine-tune
+#      toàn bộ tham số (full-parameter tuning cần optimizer states + gradients + activations).
+#      Vì vậy, 4GB thiếu bộ nhớ cho full AdamW KHÔNG đồng nghĩa với không nạp được weights;
+#      không tự ép điều kiện GPU ngoài >= 8GB như một rào cản tuyệt đối.
+# 3. Checkpoint tồn tại cục bộ:
+#    - Tệp checkpoint cached victorpham0906/best_model.bin bị chế độ tự động từ chối nạp kể cả
+#      khi đặt weights_only=True vì lý do an toàn serialization; việc phê duyệt nạp vẫn đang
+#      chờ phản hồi của người dùng.
+# ==============================================================================
+
+# Core Deep Learning Runtime (đã cài đặt và xác minh trên host: 2.13.0+cu130)
+torch>=2.0.0,<=2.13.0
+
+# Subword Tokenization & Preprocessing (đã cài đặt và xác minh: 0.2.2)
+sentencepiece>=0.2.0,<=0.2.2
+
+# Machine Translation Evaluation Metrics (đã cài đặt và xác minh: 2.6.0)
+sacrebleu>=2.4.0,<=2.6.0
+
+# Optional Hugging Face Modeling Packages (chỉ cài đặt khi huấn luyện mô hình Pretrained Hugging Face thật)
+# transformers>=4.40.0,<5.0.0
+# tokenizers>=0.19.0,<0.21.0

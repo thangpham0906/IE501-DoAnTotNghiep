@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "snapshot_id": "fixture-snapshot-v1",
+  "created_at_utc": "2026-11-01T00:00:00+00:00",
+  "scope": "Synthetic test fixture registry for unit and integration testing; NOT standard Tay language",
+  "sources": [
+    {
+      "source_id": "sample_bilingual",
+      "path": "src/tests/fixtures/sample_bilingual.jsonl",
+      "sha256": "28b7e243bcf63327f06c74b0c9353c00aabd18faddf4403aabf60eaeadd209aa",
+      "records": 28,
+      "claimed_source_domains": {
+        "test.fixture": 28
+      },
+      "training_approved": false
+    }
+  ]
+}
