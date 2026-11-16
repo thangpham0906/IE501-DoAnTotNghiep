@@ -1,0 +1,3 @@
+# Chỉ phục vụ thu thập nguồn Hugging Face, không dùng cho training.
+datasets>=2.19,<5
+huggingface_hub>=0.23,<2
