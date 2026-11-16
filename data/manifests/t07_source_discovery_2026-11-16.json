@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "audit_id": "t07-source-discovery-2026-11-16",
+  "branch": "feat/dataset-weekly",
+  "stage": "web_discovery_only",
+  "evidence_policy": "No inferred source row content, translations, raw download counts or training approval.",
+  "checked_on": "2026-11-16",
+  "sources": [
+    {
+      "source_id": "hf_heydunax_tay_vietnamese_nmt",
+      "url": "https://huggingface.co/datasets/HeyDunaX/tay-vietnamese-nmt",
+      "source_type": "published_parallel_dataset_claim",
+      "card_claims": {
+        "train_rows_approx": 20600,
+        "total_rows_displayed": 22849,
+        "splits_displayed": [
+          "train",
+          "test"
+        ],
+        "license": "cc-by-nc-4.0",
+        "fields_displayed": [
+          "translation.tay",
+          "translation.viet"
+        ]
+      },
+      "actual_download": {
+        "performed": false,
+        "source_revision_sha": null,
+        "sha256": null,
+        "records_verified": 0
+      },
+      "language_review_status": "pending",
+      "translation_review_status": "pending",
+      "usage_permission_status": "not_confirmed",
+      "training_approved": false
+    },
+    {
+      "source_id": "vov4_taynung_new_discovery",
+      "url": "https://vov4.vov.vn/taynung",
+      "source_type": "tay_nung_monolingual_candidate",
+      "discovered_pages": [
+        {
+          "title": "CHƯƠNG TRÌNH KHAY HENG TÀY- NÙNG (Chủ Nhật, vằn 15 bươn 11 pi 2026)",
+          "published_date_claimed": "2026-11-15",
+          "url": "https://vov4.vov.vn/taynung/chuong-trinh-khay-heng-an-van-chuong-trinh-phat-thanh-hang-ngay/chuong-trinh-khay-heng-tay-nung-chu-nhat-van-15-buon-11-pi-2026-534661.vov4"
+        },
+        {
+          "title": "LIỆNG PJA CHANG ROỎNG, KHUỔI DÚ SLẢNH CAO BẰNG",
+          "published_date_claimed": "2026-11-12",
+          "url": "https://vov4.vov.vn/taynung/pang-dau-cua-can-het-na-ray-ban-cua-nha-nong/lieng-pja-chang-roong-khuoi-du-slanh-cao-bang-534334.vov4"
+        }
+      ],
+      "crawl_run": {
+        "performed": false,
+        "robots_txt_verified": false,
+        "articles_downloaded": 0
+      },
+      "language_label": "unverified_tay_nung",
+      "translation_alignment": "none_verified",
+      "usage_permission_status": "not_confirmed",
+      "training_approved": false
+    }
+  ],
+  "warning": "Source discovery is not raw data acquisition. Do not add displayed counts to project inventory until an actual download with checksums and independent review."
+}
