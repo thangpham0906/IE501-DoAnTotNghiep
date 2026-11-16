@@ -68,3 +68,9 @@ Lúc đó công cụ mới đọc từng JSONL, kiểm tra số bản ghi, SHA-2
 4. Phân loại nguồn đủ hồ sơ để chuyển sang T08 và nguồn phải giữ chờ kiểm tra.
 
 **Không đánh dấu T07 hoàn thành chỉ vì code và báo cáo đã được tạo.**
+
+## 5. Phát hiện nguồn mới ngày 16/11/2026 (chưa tải)
+
+- Đã ghi nhận trang dataset Hugging Face và hai URL bài VOV4 có nguồn công khai trong [`t07_source_discovery_2026-11-16.json`](../data/manifests/t07_source_discovery_2026-11-16.json).
+- Công cụ nhập HF và audit tách holdout, cùng hướng dẫn chạy đầy đủ 1→5, ở [`T07_THU_THAP_5_BUOC.md`](T07_THU_THAP_5_BUOC.md).
+- Không có bản ghi raw mới đã tải hoặc được duyệt trong lần cập nhật này; số 527 ở snapshot cũ không được tự cộng thêm số hiển thị trên card HF.
